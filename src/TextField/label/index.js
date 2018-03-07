@@ -89,7 +89,7 @@ export default class Label extends PureComponent {
       basePadding,
       style,
       errored,
-      active, 
+      active,
       focused,
       animationDuration,
       ...props
@@ -105,7 +105,7 @@ export default class Label extends PureComponent {
     let top = input.interpolate({
       inputRange: [0, 1],
       outputRange: [
-        baseSize + fontSize * 0.25,
+        baseSize + fontSize,
         baseSize - basePadding - activeFontSize,
       ],
     });
@@ -121,7 +121,9 @@ export default class Label extends PureComponent {
 
     let containerStyle = {
       position: 'absolute',
-      top,
+      paddingLeft: 12,
+      paddingTop: 2,
+      top
     };
 
     return (

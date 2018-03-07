@@ -32,7 +32,9 @@ function getStyles(props, context) {
 
     return {
         tintColor: palette.primaryColor,
-        errorColor: palette.errorColor
+        errorColor: palette.errorColor,
+        textColor: palette.textColor,
+        backgroundColor: palette.backgroundColor
     };
 }
 
@@ -393,7 +395,7 @@ export default class TextField extends PureComponent {
       customStyles.errorColor:
       focus.interpolate({
         inputRange: [-1, 0, 1],
-        outputRange: [customStyles.errorColor, baseColor , customStyles.tintColor],
+        outputRange: ['transparent', 'transparent', 'transparent'],
       });
 
     let borderBottomWidth = restricted?
@@ -404,9 +406,8 @@ export default class TextField extends PureComponent {
       });
 
     let inputContainerStyle = {
-      paddingTop: labelHeight,
-      paddingBottom: inputContainerPadding,
-
+      paddingTop: 15,
+      paddingBottom: 0,
       ...(disabled?
         { overflow: 'hidden' }:
         { borderBottomColor, borderBottomWidth }),
@@ -417,12 +418,18 @@ export default class TextField extends PureComponent {
     };
 
     let inputStyle = {
+      zIndex: -1,
       fontSize,
       textAlign,
-
+      backgroundColor: 'rgba(29, 28, 50, 0.4)',
+      borderRadius: 4,
+      paddingLeft: 12,
+      borderColor: focused ? (!errored ? customStyles.textColor : customStyles.errorColor)
+                    : 'transparent',
+      borderWidth: 1,
       color: (disabled || defaultVisible)?
         baseColor:
-        textColor,
+        !errored ? customStyles.textColor: customStyles.errorColor,
 
       ...(props.multiline?
         {
@@ -430,15 +437,15 @@ export default class TextField extends PureComponent {
 
           ...Platform.select({
             ios: { top: -1 },
-            android: { textAlignVertical: 'top' },
+            android: { textAlignVertical: 'center' },
           }),
         }:
-        { height: fontSize * 1.5 }),
+        { height: fontSize * 1.5 + 20}),
     };
 
     let errorStyle = {
-      color: customStyles.errorColor,
-
+      color: customStyles.textColor,
+      paddingLeft: 12,
       opacity: focus.interpolate({
         inputRange: [-1, 0, 1],
         outputRange: [1, 0, 0],
@@ -454,7 +461,6 @@ export default class TextField extends PureComponent {
 
     let titleStyle = {
       color: baseColor,
-
       opacity: focus.interpolate({
         inputRange: [-1, 0, 1],
         outputRange: [0, 1, 1],
@@ -465,12 +471,7 @@ export default class TextField extends PureComponent {
 
     let helperContainerStyle = {
       flexDirection: 'row',
-      height: (title || limit)?
-        titleFontSize * 2:
-        focus.interpolate({
-          inputRange:  [-1, 0, 1],
-          outputRange: [titleFontSize * 2, 8, 8],
-        }),
+      height: 8
     };
 
     let containerProps = {
@@ -497,13 +498,14 @@ export default class TextField extends PureComponent {
     };
 
     let labelProps = {
-      baseSize: labelHeight,
+      zIndex: 1,
+      baseSize: 10,
       basePadding: labelPadding,
       fontSize,
       activeFontSize: labelFontSize,
-      tintColor: customStyles.tintColor,
-      baseColor,
-      errorColor: customStyles.errorColor,
+      tintColor: customStyles.textColor,
+      baseColor: customStyles.textColor,
+      errorColor: customStyles.textColor,
       animationDuration,
       active,
       focused,
@@ -522,7 +524,7 @@ export default class TextField extends PureComponent {
     };
 
     return (
-      <View {...containerProps}>
+      <View style={{}}{...containerProps}>
         <Animated.View {...inputContainerProps}>
           {disabled && <Line {...lineProps} />}
 
@@ -547,8 +549,6 @@ export default class TextField extends PureComponent {
               ref={this.updateRef}
             />
 
-            {this.renderAffix('suffix', active, focused)}
-            {this.renderAccessory()}
           </View>
         </Animated.View>
 

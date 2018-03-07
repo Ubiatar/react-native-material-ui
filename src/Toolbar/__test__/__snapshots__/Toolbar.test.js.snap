@@ -106,7 +106,7 @@ exports[`Center element center element only 1`] = `
         Array [
           Object {
             "color": "#ffffff",
-            "fontFamily": "Roboto",
+            "fontFamily": "Raleway",
             "fontSize": 20,
             "fontWeight": "500",
           },

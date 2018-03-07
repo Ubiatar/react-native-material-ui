@@ -21,6 +21,7 @@ export { default as Icon } from './Icon';
 export { default as IconToggle } from './IconToggle';
 export { default as ListItem } from './ListItem';
 export { default as RadioButton } from './RadioButton';
+export { default as Select } from './Select';
 export { default as Subheader } from './Subheader';
 export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
