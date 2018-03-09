@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Platform, Animated, Easing, StyleSheet } from 'react-native';
+import { Platform, Animated, Easing, StyleSheet, View } from 'react-native';
 import { ViewPropTypes } from '../utils';
 /* eslint-enable import/no-unresolved, import/extensions */
 
@@ -24,13 +24,18 @@ const propTypes = {
     * Inline style of bottom navigation
     */
     style: PropTypes.shape({
-        container: ViewPropTypes.style,
+        container: ViewPropTypes.style
     }),
+    /**
+     * Set the tab indicator visible or not
+     */
+    tabIndicator: PropTypes.bool
 };
 const defaultProps = {
     active: null,
     hidden: false,
     style: {},
+    tabIndicator: false
 };
 const contextTypes = {
     uiTheme: PropTypes.object.isRequired,
@@ -93,7 +98,7 @@ class BottomNavigation extends PureComponent {
         }).start();
     }
     render() {
-        const { active, children } = this.props;
+        const { active, children, tabIndicator, tabIndicatorColor } = this.props;
         const { styles } = this.state;
 
         return (
@@ -106,10 +111,14 @@ class BottomNavigation extends PureComponent {
             >
                 {React.Children.map(
                     children,
-                    child => React.cloneElement(child, {
-                        ...child.props,
-                        active: child.key === active,
-                    }),
+                    child => {
+                        if (child)
+                            return React.cloneElement(child, {
+                                ...child.props,
+                                active: child.key === active,
+                                tabIndicator: tabIndicator
+                            })
+                    },
                 )}
             </Animated.View>
         );
