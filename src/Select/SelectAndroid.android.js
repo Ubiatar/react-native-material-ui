@@ -204,7 +204,7 @@ class SelectAndroid extends React.Component<{
 
 
 
-        return <Select style={{borderRadius: 4}} ref={REF_PICKER} {...nativeProps} />
+        return <Select ref={REF_PICKER} {...nativeProps} />
     }
 
 

@@ -425,7 +425,7 @@ export default class TextField extends PureComponent {
       borderRadius: 4,
       paddingLeft: 12,
       borderColor: focused ? (!errored ? customStyles.textColor : customStyles.errorColor)
-                    : 'transparent',
+                    : ( errored ? customStyles.errorColor : 'transparent'),
       borderWidth: 1,
       color: (disabled || defaultVisible)?
         baseColor:

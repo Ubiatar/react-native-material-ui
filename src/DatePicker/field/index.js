@@ -437,7 +437,8 @@ export default class DatePicker extends PureComponent {
       backgroundColor: 'rgba(29, 28, 50, 0.4)',
       borderRadius: 4,
       paddingLeft: 12,
-      borderColor: !errored ? 'transparent' : customStyles.errorColor,
+      borderColor: focused ? (!errored ? customStyles.textColor : customStyles.errorColor)
+          : ( errored ? customStyles.errorColor : 'transparent'),
       borderWidth: 1,
       color: (disabled || defaultVisible)?
         baseColor:

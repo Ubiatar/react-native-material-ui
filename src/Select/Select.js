@@ -44,7 +44,8 @@ var ViewStylePropTypes = require('ViewStylePropTypes');
 
 var itemStylePropType = StyleSheetPropType(TextStylePropTypes);
 
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
+import {colors} from "../../../src/styles/material-ui-theme";
 
 var pickerStyleType = StyleSheetPropType({
 
@@ -88,6 +89,8 @@ class SelectItem extends React.Component<{
          */
 
         label: PropTypes.string.isRequired,
+
+        labelText: PropTypes.string,
 
         /**
 
@@ -297,6 +300,8 @@ class Select extends React.Component<{
 
     render() {
 
+        let {labelText} = this.props
+
         if (Platform.OS === 'ios') {
 
             // $FlowFixMe found when converting React.createClass to ES6
@@ -307,8 +312,13 @@ class Select extends React.Component<{
 
             // $FlowFixMe found when converting React.createClass to ES6
 
-            return <View style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}>
-                <SelectAndroid {...this.props}>{this.props.children}</SelectAndroid>
+            return <View>
+                <Text style={{color: colors.textColor, fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
+                    {labelText}
+                </Text>
+                <View style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}>
+                    <SelectAndroid style={{marginLeft: 5}} {...this.props}>{this.props.children}</SelectAndroid>
+                </View>
             </View>;
 
         } else {
