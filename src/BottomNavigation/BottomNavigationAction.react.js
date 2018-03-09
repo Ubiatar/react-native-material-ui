@@ -37,7 +37,12 @@ const propTypes = {
         container: ViewPropTypes.style,
         active: Text.propTypes.style,
         disabled: Text.propTypes.style,
+        tabIndicator: Text.propTypes.style
     }),
+    /**
+     * Set the tab indicator visible or not
+     */
+    tabIndicator: PropTypes.bool
 };
 const defaultProps = {
     label: null,
@@ -45,20 +50,41 @@ const defaultProps = {
     active: false,
     disabled: false,
     style: {},
+    tabIndicator: false
 };
 const contextTypes = {
     uiTheme: PropTypes.object.isRequired,
 };
+const defaultStyle = StyleSheet.create({
+    tabIndicator: {
+        position: 'absolute',
+        height: 3,
+        width: '150%',
+        top: 0
+    }
+})
 
 function getStyles(props, context) {
     const { bottomNavigationAction } = context.uiTheme;
 
     const local = {};
+    const activeInactiveProps = {}
+    const activeInactiveContext = {}
 
     if (props.active) {
         local.container = bottomNavigationAction.containerActive;
         local.icon = bottomNavigationAction.iconActive;
         local.label = bottomNavigationAction.labelActive;
+        activeInactiveContext.icon = bottomNavigationAction.active;
+        activeInactiveContext.label = bottomNavigationAction.active;
+        activeInactiveContext.tabIndicator = bottomNavigationAction.tabIndicator
+        activeInactiveProps.icon = props.style.active;
+        activeInactiveProps.label = props.style.active;
+    } else {
+        activeInactiveContext.icon = bottomNavigationAction.disabled;
+        activeInactiveContext.label = bottomNavigationAction.disabled;
+        activeInactiveProps.icon = props.style.disabled;
+        activeInactiveProps.label = props.style.disabled;
     }
 
     if (!props.label) {
@@ -74,13 +100,23 @@ function getStyles(props, context) {
         icon: [
             bottomNavigationAction.icon,
             local.icon,
+            activeInactiveContext.icon,
+            activeInactiveProps.icon,
             props.style.icon,
         ],
         label: [
             bottomNavigationAction.label,
             local.label,
+            activeInactiveContext.label,
+            activeInactiveProps.label,
             props.style.label,
         ],
+        tabIndicator: [
+            bottomNavigationAction.tabIndicator,
+            activeInactiveContext.tabIndicator,
+            defaultStyle.tabIndicator,
+            props.style.tabIndicator
+        ]
     };
 }
 
@@ -98,7 +134,7 @@ class BottomNavigationAction extends PureComponent {
     }
 
     render() {
-        const { icon, label, onPress } = this.props;
+        const { icon, label, onPress, active, tabIndicator } = this.props;
 
         const styles = getStyles(this.props, this.context);
         const color = StyleSheet.flatten(styles.icon).color;
@@ -108,6 +144,7 @@ class BottomNavigationAction extends PureComponent {
         return (
             <RippleFeedback onPress={onPress}>
                 <View style={styles.container}>
+                    { tabIndicator && active ? <View collapsable={false} style={styles.tabIndicator}></View> : null }
                     {iconElement}
                     <Text style={styles.label}>{label}</Text>
                 </View>
