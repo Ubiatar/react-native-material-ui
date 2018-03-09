@@ -43,6 +43,9 @@ const propTypes = {
         PropTypes.element,
     ]),
     /**
+    * You can specify the position of the icon, left or right*/
+    iconPosition: PropTypes.string,
+    /**
     * You can overide any style for this button
     */
     style: PropTypes.shape({
@@ -59,6 +62,7 @@ const defaultProps = {
     disabled: false,
     raised: false,
     upperCase: true,
+    iconPosition: 'left',
     style: {},
 };
 const contextTypes = {
@@ -184,17 +188,24 @@ class Button extends PureComponent {
         return result;
     }
     render() {
-        const { text, disabled, raised, upperCase, onLongPress } = this.props;
+        const { text, disabled, raised, upperCase, onLongPress, iconPosition } = this.props;
 
         const styles = getStyles(this.props, this.context, this.state);
 
         const content = (
-            <View style={styles.container}>
-                {this.renderIcon(styles)}
-                <Text style={styles.text}>
-                    {upperCase ? text.toUpperCase() : text}
-                </Text>
-            </View>
+            iconPosition === 'left' ?
+                <View style={styles.container}>
+                    {this.renderIcon(styles)}
+                    <Text style={styles.text}>
+                        {upperCase ? text.toUpperCase() : text}
+                    </Text>
+                </View> :
+                <View style={styles.container}>
+                    <Text style={styles.text}>
+                        {upperCase ? text.toUpperCase() : text}
+                    </Text>
+                    {this.renderIcon(styles)}
+                </View>
         );
 
         if (disabled) {
