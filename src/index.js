@@ -5,6 +5,7 @@ export { default as ThemeProvider } from './styles/ThemeProvider.react';
 export { default as RippleFeedback } from './RippleFeedback';
 // components
 export { default as ActionButton } from './ActionButton';
+export { default as AppIntro } from './AppIntro/AppIntro';
 export { default as Avatar } from './Avatar';
 export { default as Badge } from './Badge';
 export { default as Button } from './Button';
@@ -25,4 +26,5 @@ export { default as Select } from './Select';
 export { default as Subheader } from './Subheader';
 export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
+export { default as Typography } from './Typography';
 export { default as Snackbar } from './Snackbar';

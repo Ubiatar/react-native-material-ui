@@ -88,6 +88,7 @@ export default class Label extends PureComponent {
       baseSize,
       basePadding,
       style,
+      fontFamily,
       errored,
       active,
       focused,
@@ -111,6 +112,7 @@ export default class Label extends PureComponent {
     });
 
     let textStyle = {
+      fontFamily,
       fontSize: input.interpolate({
         inputRange: [0, 1],
         outputRange: [fontSize, activeFontSize],
@@ -122,7 +124,7 @@ export default class Label extends PureComponent {
     let containerStyle = {
       position: 'absolute',
       paddingLeft: 12,
-      paddingTop: 2,
+      paddingTop: 3,
       top
     };
 

@@ -10,7 +10,8 @@ export default StyleSheet.create({
     top: 2,
     padding: 0,
     margin: 0,
-    flex: 1
+    flex: 1,
+    fontFamily: 'Raleway-Regular'
   },
 
   row: {

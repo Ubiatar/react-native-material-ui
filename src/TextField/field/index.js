@@ -28,13 +28,14 @@ const contextTypes = {
 
 
 function getStyles(props, context) {
-    const { palette } = context.uiTheme;
+    const { palette, fontFamily } = context.uiTheme;
 
     return {
         tintColor: palette.primaryColor,
         errorColor: palette.errorColor,
         textColor: palette.textColor,
-        backgroundColor: palette.backgroundColor
+        backgroundColor: palette.backgroundColor,
+        regularFont: fontFamily
     };
 }
 
@@ -51,7 +52,7 @@ export default class TextField extends PureComponent {
     titleFontSize: 12,
     labelFontSize: 12,
     labelHeight: 32,
-    labelPadding: 4,
+    labelPadding: 3,
     inputContainerPadding: 8,
 
     tintColor: 'rgb(0, 145, 234)',
@@ -424,6 +425,7 @@ export default class TextField extends PureComponent {
       backgroundColor: 'rgba(29, 28, 50, 0.4)',
       borderRadius: 4,
       paddingLeft: 12,
+      paddingRight: 12,
       borderColor: focused ? (!errored ? customStyles.textColor : customStyles.errorColor)
                     : ( errored ? customStyles.errorColor : 'transparent'),
       borderWidth: 1,
@@ -445,6 +447,7 @@ export default class TextField extends PureComponent {
 
     let errorStyle = {
       color: customStyles.textColor,
+      fontFamily: customStyles.regularFont,
       paddingLeft: 12,
       opacity: focus.interpolate({
         inputRange: [-1, 0, 1],
@@ -502,6 +505,7 @@ export default class TextField extends PureComponent {
       baseSize: 10,
       basePadding: labelPadding,
       fontSize,
+      fontFamily: customStyles.regularFont,
       activeFontSize: labelFontSize,
       tintColor: customStyles.textColor,
       baseColor: customStyles.textColor,

@@ -12,7 +12,7 @@ import typography from '../typography';
 export default {
     spacing,
     typography,
-    fontFamily: 'Raleway',
+    fontFamily: 'Raleway-Light',
     palette: {
         // main theme colors
         primaryColor: blue500,

@@ -293,7 +293,9 @@ var styles = StyleSheet.create({
 
         backgroundColor: 'transparent',
 
-        color: 'white'
+        color: 'white',
+
+
     },
 
 });

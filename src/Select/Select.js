@@ -313,7 +313,7 @@ class Select extends React.Component<{
             // $FlowFixMe found when converting React.createClass to ES6
 
             return <View>
-                <Text style={{color: colors.textColor, fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
+                <Text style={{color: colors.textColor, fontFamily: 'Raleway-Regular', fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
                     {labelText}
                 </Text>
                 <View style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}>

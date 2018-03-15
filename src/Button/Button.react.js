@@ -87,17 +87,33 @@ function getStyles(props, context, state) {
 
     if (!disabled) {
         if (primary && !raised) {
-            local.text = { color: palette.primaryColor };
+            local.text = { color: palette.primaryColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
         } else if (accent && !raised) {
-            local.text = { color: palette.accentColor };
+            local.text = { color: palette.accentColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
         }
 
         if (primary && raised) {
             local.container.backgroundColor = palette.primaryColor;
-            local.text = { color: palette.canvasColor };
+            local.text = { color: palette.canvasColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
         } else if (accent && raised) {
             local.container.backgroundColor = palette.accentColor;
-            local.text = { color: palette.canvasColor };
+            local.text = { color: palette.canvasColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        }
+    }
+
+    if (disabled) {
+        if (primary && !raised) {
+            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        } else if (accent && !raised) {
+            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        }
+
+        if (primary && raised) {
+            local.container.backgroundColor = palette.disabledColor;
+            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        } else if (accent && raised) {
+            local.container.backgroundColor = palette.accentColor;
+            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
         }
     }
 
@@ -142,7 +158,7 @@ class Button extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            elevation: 2,
+            elevation: 2
         };
     }
     onPress = () => {
