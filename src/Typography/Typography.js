@@ -9,18 +9,33 @@ const contextTypes = {
 }
 
 function getStyles(props, context) {
-  const { palette, fontFamily } = context.uiTheme;
+  const { palette, fontFamily, typography } = context.uiTheme;
+  const { type } = props;
 
-  return {
-    textColor: palette.textColor,
-    regularFont: fontFamily
-  }
+  console.log(type,context)
+  if(type === 'title')
+    return {
+        textColor: palette.textColor,
+        regularFont: fontFamily,
+        fontSize: typography.appBar.fontSize
+    }
+  if(type === 'text')
+    return {
+        textColor: palette.textColor,
+        regularFont: fontFamily
+    }
+   if(type === 'button')
+    return {
+        textColor: palette.primaryColor,
+        regularFont: fontFamily
+    }
 }
 
 
 export default class Typography extends PureComponent {
   static propTypes = {
       ...Text.propTypes,
+      type: PropTypes.string,
       style: Text.propTypes.style
   }
 
@@ -30,7 +45,9 @@ export default class Typography extends PureComponent {
 
       let textStyle = {
         color: customStyles.textColor,
-        fontFamily: customStyles.regularFont
+        fontWeight: customStyles.fontWeight,
+        fontFamily: customStyles.regularFont,
+        fontSize: customStyles.fontSize
       }
       return <Text {...this.props} style={[textStyle, this.props.style]}>{this.props.children}</Text>
   }
