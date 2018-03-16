@@ -12,7 +12,6 @@ function getStyles(props, context) {
   const { palette, fontFamily, typography } = context.uiTheme;
   const { type } = props;
 
-  console.log(type,context)
   if(type === 'title')
     return {
         textColor: palette.textColor,
@@ -28,6 +27,12 @@ function getStyles(props, context) {
     return {
         textColor: palette.primaryColor,
         regularFont: fontFamily
+    }
+    if(type === 'tutorial')
+     return {
+        textColor: palette.textColor,
+        regularFont: fontFamily,
+        fontSize: typography.subheading.fontSize
     }
 }
 
