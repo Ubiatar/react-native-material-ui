@@ -95,7 +95,8 @@ const defaulStyles = {
     nextButtonText: {
         paddingTop: '8%',
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: '400',
+        fontFamily: 'Raleway-Bold'
     },
     full: {
         height: 80,
@@ -321,6 +322,7 @@ export default class AppIntro extends Component {
             <View>
                 {androidPages}
                 <Swiper
+                    {...this.props}
                     loop={false}
                     index={this.props.defaultIndex}
                     renderPagination={this.renderPagination}

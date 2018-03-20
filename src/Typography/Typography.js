@@ -44,6 +44,10 @@ export default class Typography extends PureComponent {
       style: Text.propTypes.style
   }
 
+  static defaultProps = {
+      type: 'text'
+  }
+
   render() {
 
       const customStyles = getStyles(this.props, this.context)

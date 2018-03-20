@@ -99,6 +99,12 @@ function getStyles(props, context, state) {
             local.container.backgroundColor = palette.accentColor;
             local.text = { color: palette.canvasColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
         }
+
+        if (!primary && !raised) {
+            local.text = { color: palette.darkPrimary, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        } else if (accent && raised) {
+            local.text = { color: palette.darkPrimary, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        }
     }
 
     if (disabled) {
