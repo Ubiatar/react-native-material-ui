@@ -515,7 +515,6 @@ export default class DatePicker extends PureComponent {
     };
 
     let labelProps = {
-      zIndex: 1,
       baseSize: 10,
       basePadding: labelPadding,
       fontSize,

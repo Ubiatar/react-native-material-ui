@@ -501,7 +501,6 @@ export default class TextField extends PureComponent {
     };
 
     let labelProps = {
-      zIndex: 1,
       baseSize: 10,
       basePadding: labelPadding,
       fontSize,
