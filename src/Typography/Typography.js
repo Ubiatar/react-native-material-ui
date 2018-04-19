@@ -39,6 +39,13 @@ function getStyles(props, context) {
             textColor: palette.darkPrimary,
             regularFont: fontFamily
         }
+    if (type === 'darkTitle')
+        return {
+            textColor: palette.darkPrimary,
+            regularFont: fontFamily,
+            fontSize: typography.appBar.fontSize
+        }
+
 }
 
 
