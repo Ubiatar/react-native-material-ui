@@ -12,40 +12,46 @@ function getStyles(props, context) {
     const {palette, fontFamily, typography} = context.uiTheme;
     const {type} = props;
 
-    if (type === 'title')
-        return {
-            textColor: palette.textColor,
-            regularFont: fontFamily,
-            fontSize: typography.appBar.fontSize
-        }
-    if (type === 'text')
-        return {
-            textColor: palette.textColor,
-            regularFont: fontFamily
-        }
-    if (type === 'button')
-        return {
-            textColor: palette.primaryColor,
-            regularFont: fontFamily
-        }
-    if (type === 'tutorial')
-        return {
-            textColor: palette.textColor,
-            regularFont: fontFamily,
-            fontSize: typography.subheading.fontSize
-        }
-    if (type === 'darkText')
-        return {
-            textColor: palette.darkPrimary,
-            regularFont: fontFamily
-        }
-    if (type === 'darkTitle')
-        return {
-            textColor: palette.darkPrimary,
-            regularFont: fontFamily,
-            fontSize: typography.appBar.fontSize
-        }
-
+    switch (type) {
+        case 'title':
+            return {
+                textColor: palette.textColor,
+                regularFont: fontFamily,
+                fontSize: typography.appBar.fontSize
+            }
+        case 'text':
+            return {
+                textColor: palette.textColor,
+                regularFont: fontFamily
+            }
+        case 'button':
+            return {
+                textColor: palette.primaryColor,
+                regularFont: fontFamily
+            }
+        case 'tutorial':
+            return {
+                textColor: palette.textColor,
+                regularFont: fontFamily,
+                fontSize: typography.subheading.fontSize
+            }
+        case 'darkText':
+            return {
+                textColor: palette.darkPrimary,
+                regularFont: fontFamily
+            }
+        case 'darkTitle':
+            return {
+                textColor: palette.darkPrimary,
+                regularFont: fontFamily,
+                fontSize: typography.appBar.fontSize
+            }
+        default:
+            return {
+                textColor: palette.textColor,
+                regularFont: fontFamily
+            }
+    }
 }
 
 
