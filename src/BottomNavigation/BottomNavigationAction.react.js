@@ -123,7 +123,7 @@ function getStyles(props, context) {
 }
 
 class BottomNavigationAction extends PureComponent {
-    renderIcon(styles) {
+    renderIcon(icon, styles, color) { 
         const { icon } = this.props;
         const { color } = StyleSheet.flatten(styles.icon);
 
@@ -152,7 +152,7 @@ class BottomNavigationAction extends PureComponent {
         const styles = getStyles(this.props, this.context);
 
         const color = StyleSheet.flatten(styles.icon).color;
-        const iconElement = this.renderIcon(icon, styles, color); 
+        const iconElement = this.renderIcon(icon, styles, color);
 
         return (
             <RippleFeedback onPress={onPress}>
