@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
     Animated,
     Easing,
-    Platform,
     StyleSheet,
     Text,
     View,
@@ -34,6 +33,10 @@ const propTypes = {
         * Called when search was closed.
         */
         onSearchClosed: PropTypes.func,
+        /**
+        * Called when action to close search was requested.
+        */
+        onSearchCloseRequested: PropTypes.func,
         /**
         * Called when search was opened.
         */
@@ -122,12 +125,10 @@ const propTypes = {
         * For actions and menu. The menu will be shown as last one icon.
         */
         PropTypes.shape({
-            actions: PropTypes.arrayOf(
-                PropTypes.oneOfType([
-                    PropTypes.element,
-                    PropTypes.string,
-                ]),
-            ),
+            actions: PropTypes.arrayOf(PropTypes.oneOfType([
+                PropTypes.element,
+                PropTypes.string,
+            ])),
             menu: PropTypes.shape({
                 icon: PropTypes.string,
                 labels: PropTypes.arrayOf(PropTypes.string),
@@ -140,7 +141,6 @@ const propTypes = {
     onRightElementPress: PropTypes.func,
 };
 const defaultProps = {
-    elevation: 4, // TODO: probably useless, elevation is defined in getTheme function
     style: {},
     hidden: false,
     isSearchActive: false,
@@ -157,15 +157,9 @@ const contextTypes = {
     uiTheme: PropTypes.object.isRequired,
 };
 
-const EMPTY_BACK_BUTTON_LISTENER = { remove: () => {} };
-const getBackButtonListener = (callback, isSearchActive) => {
-    // if search is active by default we need to listen back button
-    if (isSearchActive) {
-        return BackAndroid.addEventListener('closeRequested', callback);
-    }
+const getBackButtonListener = callback =>
+    BackAndroid.addEventListener('hardwareBackPress', callback);
 
-    return EMPTY_BACK_BUTTON_LISTENER;
-};
 // const isSearchable = props => (props.searchable && props.isSearchActive) || false;
 // const getIsSearchActive = (props, state) => (props.searchable && state.isSearchActive) || false;
 
@@ -185,10 +179,8 @@ class Toolbar extends PureComponent {
         super(props);
 
         const isSearchActive = props.isSearchActive || false;
-        this.backButtonListener = getBackButtonListener(
-            this.onSearchCloseRequested,
-            isSearchActive,
-        );
+        this.backButtonListener = isSearchActive ?
+            getBackButtonListener(this.onSearchCloseRequested) : null;
 
         this.state = {
             // indicates if searc is activated
@@ -249,7 +241,7 @@ class Toolbar extends PureComponent {
             this.state.defaultScaleValue.setValue(0.01);
             this.setState({ order: 'searchFirst' });
             // on android it's typical that back button closes search input on toolbar
-            this.backButtonListener = getBackButtonListener(this.onSearchCloseRequested, true);
+            this.backButtonListener = getBackButtonListener(this.onSearchCloseRequested);
         });
     }
     onSearchPressed = () => {
@@ -277,6 +269,10 @@ class Toolbar extends PureComponent {
     * Android's HW/SW back button
     */
     onSearchCloseRequested = () => {
+        if (this.props.searchable.onSearchCloseRequested) {
+            this.props.searchable.onSearchCloseRequested();
+        }
+
         this.setState({
             isSearchActive: false,
             searchValue: '',
@@ -286,8 +282,6 @@ class Toolbar extends PureComponent {
             // default scale set up back to "hidden" value
             this.state.searchScaleValue.setValue(0.01);
             this.setState({ order: 'defaultFirst' });
-            // on android it's typical that back button closes search input on toolbar
-            this.backButtonListener = getBackButtonListener(this.onSearchCloseRequested, false);
 
             this.onSearchClosed();
         });
@@ -297,7 +291,9 @@ class Toolbar extends PureComponent {
     onSearchClosed = () => {
         const { searchable } = this.props;
 
-        this.backButtonListener.remove();
+        if (this.backButtonListener) {
+            this.backButtonListener.remove();
+        }
 
         if (searchable && isFunction(searchable.onSearchClosed)) {
             searchable.onSearchClosed();
@@ -329,7 +325,7 @@ class Toolbar extends PureComponent {
             toValue: 1,
             duration: 325,
             easing: Easing.bezier(0.0, 0.0, 0.2, 1),
-            useNativeDriver: Platform.OS === 'android',
+            useNativeDriver: true,
         }).start(onComplete);
     }
     animateDefaultBackground = (onComplete) => {
@@ -337,7 +333,7 @@ class Toolbar extends PureComponent {
             toValue: 1,
             duration: 325,
             easing: Easing.bezier(0.0, 0.0, 0.2, 1),
-            useNativeDriver: Platform.OS === 'android',
+            useNativeDriver: true,
         }).start(onComplete);
     }
     focusSearchField() {
@@ -349,7 +345,7 @@ class Toolbar extends PureComponent {
             toValue: 0,
             duration: 225,
             easing: Easing.bezier(0.0, 0.0, 0.2, 1),
-            useNativeDriver: Platform.OS === 'android',
+            useNativeDriver: true,
         }).start();
     }
     hide = () => {
@@ -359,7 +355,7 @@ class Toolbar extends PureComponent {
             toValue: (-1 * StyleSheet.flatten(styles.container).height),
             duration: 195,
             easing: Easing.bezier(0.4, 0.0, 0.6, 1),
-            useNativeDriver: Platform.OS === 'android',
+            useNativeDriver: true,
         }).start();
     }
     renderAnimatedBackgrounds = (styles) => {

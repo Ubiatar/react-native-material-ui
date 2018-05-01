@@ -3,28 +3,38 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, NativeModules, findNodeHandle } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
+import { ViewPropTypes } from '../utils';
 
 import IconToggle from '../IconToggle';
 import isFunction from '../utils/isFunction';
 
-const UIManager = NativeModules.UIManager;
+const { UIManager } = NativeModules;
 
 const propTypes = {
+    rightElementTestID: PropTypes.string,
     isSearchActive: PropTypes.bool.isRequired,
     searchValue: PropTypes.string.isRequired,
-    searchable: PropTypes.object.isRequired,
-    style: PropTypes.object,
+    // We need just check if searchable exists
+    // TODO: pass bool to this component
+    searchable: PropTypes.object, // eslint-disable-line
+    style: PropTypes.shape({
+        rightElementContainer: ViewPropTypes.style,
+        rightEle: ViewPropTypes.style,
+    }),
     size: PropTypes.number,
-    rightElement: PropTypes.any,
+    // TODO: add shape control
+    rightElement: PropTypes.any, // eslint-disable-line
     onRightElementPress: PropTypes.func,
     onSearchClearRequest: PropTypes.func.isRequired,
     onSearchPress: PropTypes.func.isRequired,
 };
 const defaultProps = {
+    rightElementTestID: null,
     rightElement: null,
     onRightElementPress: null,
     size: null,
     style: {},
+    searchable: null,
 };
 const contextTypes = {
     uiTheme: PropTypes.object.isRequired,
@@ -73,6 +83,7 @@ class RightElement extends PureComponent {
     };
     render() {
         const {
+            rightElementTestID,
             isSearchActive,
             rightElement,
             onRightElementPress,
@@ -139,33 +150,29 @@ class RightElement extends PureComponent {
                 result = [];
 
                 if (searchValue.length > 0) {
-                    result.push(
-                        <IconToggle
-                            key="searchClear"
-                            name="clear"
-                            color={flattenRightElement.color}
-                            size={size}
-                            style={flattenRightElement}
-                            onPress={onSearchClearRequest}
-                        />,
-                    );
-                }
-            } else {
-                result.push(
-                    <IconToggle
-                        key="searchIcon"
-                        name="search"
+                    result.push(<IconToggle
+                        key="searchClear"
+                        name="clear"
                         color={flattenRightElement.color}
                         size={size}
                         style={flattenRightElement}
-                        onPress={this.onSearchPressed}
-                    />,
-                );
+                        onPress={onSearchClearRequest}
+                    />);
+                }
+            } else {
+                result.push(<IconToggle
+                    key="searchIcon"
+                    name="search"
+                    color={flattenRightElement.color}
+                    size={size}
+                    style={flattenRightElement}
+                    onPress={this.onSearchPressed}
+                />);
             }
         }
 
         if (rightElement && rightElement.menu && !isSearchActive) {
-            result.push(
+            const view = (
                 <View key="menuIcon">
                     {/* We need this view as an anchor for drop down menu. findNodeHandle can
                         find just view with width and height, even it needs backgroundColor :/
@@ -179,18 +186,23 @@ class RightElement extends PureComponent {
                         }}
                     />
                     <IconToggle
-                        name="more-vert"
+                        name={rightElement.menu.icon || 'more-vert'}
                         color={flattenRightElement.color}
                         size={size}
                         onPress={() => this.onMenuPressed(rightElement.menu.labels)}
                         style={flattenRightElement}
                     />
-                </View>,
+                </View>
             );
+
+            result.push(view);
         }
 
         return (
-            <View style={styles.rightElementContainer}>
+            <View
+                testID={rightElementTestID}
+                style={styles.rightElementContainer}
+            >
                 {result}
             </View>
         );

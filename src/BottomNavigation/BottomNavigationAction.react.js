@@ -9,6 +9,7 @@ import RippleFeedback from '../RippleFeedback';
 import Icon from '../Icon';
 
 const propTypes = {
+    testID: PropTypes.string,
     /**
     * Will be rendered above the label as a content of the action.
     * If string, result will be <Icon name={icon} ...rest />
@@ -25,7 +26,7 @@ const propTypes = {
     /**
     * True if the action is active (for now it'll be highlight by primary color)
     */
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     /**
     * Callback for on press event.
     */
@@ -45,6 +46,7 @@ const propTypes = {
     tabIndicator: PropTypes.bool
 };
 const defaultProps = {
+    testID: null,
     label: null,
     onPress: null,
     active: false,
@@ -121,7 +123,10 @@ function getStyles(props, context) {
 }
 
 class BottomNavigationAction extends PureComponent {
-    renderIcon(icon, styles, color) {
+    renderIcon(styles) {
+        const { icon } = this.props;
+        const { color } = StyleSheet.flatten(styles.icon);
+
         let element;
         if (React.isValidElement(icon)) {
             // we need icon to change color after it's selected, so we send the color and style to
@@ -132,14 +137,19 @@ class BottomNavigationAction extends PureComponent {
         }
         return element;
     }
+    renderLabel(styles) {
+        const { label } = this.props;
 
+        if (!label) {
+            return null;
+        }
+
+        return <Text style={styles.label}>{label}</Text>;
+    }
     render() {
         const { icon, label, onPress, active, tabIndicator } = this.props;
 
         const styles = getStyles(this.props, this.context);
-        const color = StyleSheet.flatten(styles.icon).color;
-
-        const iconElement = this.renderIcon(icon, styles, color);
 
         return (
             <RippleFeedback onPress={onPress}>

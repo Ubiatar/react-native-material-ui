@@ -7,13 +7,15 @@ exports[`Button accent, text, icon 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -32,7 +34,7 @@ exports[`Button accent, text, icon 1`] = `
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -88,6 +90,61 @@ exports[`Button accent, text, icon 1`] = `
   >
     DISMISS
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -98,13 +155,15 @@ exports[`Button default color 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -123,7 +182,7 @@ exports[`Button default color 1`] = `
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -147,11 +206,67 @@ exports[`Button default color 1`] = `
   >
     DEFAULT
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
 exports[`Button disabled 1`] = `
 <View
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -205,13 +320,15 @@ exports[`Button onPress 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -230,7 +347,7 @@ exports[`Button onPress 1`] = `
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -254,6 +371,61 @@ exports[`Button onPress 1`] = `
   >
     CLEAR
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -264,13 +436,15 @@ exports[`Button primary, text 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -289,7 +463,7 @@ exports[`Button primary, text 1`] = `
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -315,6 +489,61 @@ exports[`Button primary, text 1`] = `
   >
     PRIMARY
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -325,13 +554,15 @@ exports[`Button primary, text, icon 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -350,7 +581,7 @@ exports[`Button primary, text, icon 1`] = `
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -406,6 +637,61 @@ exports[`Button primary, text, icon 1`] = `
   >
     ACCEPT
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -416,13 +702,15 @@ exports[`Button raised default 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -443,17 +731,17 @@ exports[`Button raised default 1`] = `
       Object {
         "shadowColor": "#000000",
         "shadowOffset": Object {
-          "height": 2,
+          "height": 1,
           "width": 0,
         },
         "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowRadius": 1,
         "zIndex": 1,
       },
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -477,6 +765,61 @@ exports[`Button raised default 1`] = `
   >
     DEFAULT
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -487,13 +830,15 @@ exports[`Button raised, accent, text 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -515,17 +860,17 @@ exports[`Button raised, accent, text 1`] = `
         "backgroundColor": "#f44336",
         "shadowColor": "#000000",
         "shadowOffset": Object {
-          "height": 2,
+          "height": 1,
           "width": 0,
         },
         "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowRadius": 1,
         "zIndex": 1,
       },
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -551,6 +896,61 @@ exports[`Button raised, accent, text 1`] = `
   >
     ACCENT
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -561,13 +961,15 @@ exports[`Button raised, accent, text, icon 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -589,17 +991,17 @@ exports[`Button raised, accent, text, icon 1`] = `
         "backgroundColor": "#f44336",
         "shadowColor": "#000000",
         "shadowOffset": Object {
-          "height": 2,
+          "height": 1,
           "width": 0,
         },
         "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowRadius": 1,
         "zIndex": 1,
       },
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -655,11 +1057,67 @@ exports[`Button raised, accent, text, icon 1`] = `
   >
     CLEAR
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
 exports[`Button raised, disabled, default 1`] = `
 <View
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -718,13 +1176,15 @@ exports[`Button raised, primary, text 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -746,17 +1206,17 @@ exports[`Button raised, primary, text 1`] = `
         "backgroundColor": "#2196f3",
         "shadowColor": "#000000",
         "shadowOffset": Object {
-          "height": 2,
+          "height": 1,
           "width": 0,
         },
         "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowRadius": 1,
         "zIndex": 1,
       },
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -782,6 +1242,61 @@ exports[`Button raised, primary, text 1`] = `
   >
     PRIMARY
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -792,13 +1307,15 @@ exports[`Button raised, primary, text, icon 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
-  onLayout={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  pointerEvents="box-only"
   style={
     Array [
       Object {
@@ -820,17 +1337,17 @@ exports[`Button raised, primary, text, icon 1`] = `
         "backgroundColor": "#2196f3",
         "shadowColor": "#000000",
         "shadowOffset": Object {
-          "height": 2,
+          "height": 1,
           "width": 0,
         },
         "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowRadius": 1,
         "zIndex": 1,
       },
       undefined,
     ]
   }
-  testID={undefined}
+  testID={null}
 >
   <Text
     accessible={true}
@@ -886,5 +1403,60 @@ exports[`Button raised, primary, text, icon 1`] = `
   >
     DONE
   </Text>
+  <View
+    pointerEvents="none"
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      collapsable={undefined}
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": 100,
+          "height": 200,
+          "left": -100,
+          "opacity": 0.12,
+          "position": "absolute",
+          "top": -100,
+          "transform": Array [
+            Object {
+              "scale": 0,
+            },
+          ],
+          "width": 200,
+          "zIndex": 1,
+        }
+      }
+    />
+  </View>
 </View>
 `;

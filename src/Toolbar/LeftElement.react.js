@@ -1,25 +1,29 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Easing, Platform, StyleSheet } from 'react-native';
+import { Animated, Easing, StyleSheet, Text } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
+import { ViewPropTypes } from '../utils';
 
 import IconToggle from '../IconToggle';
 
 const propTypes = {
+    leftElementTestID: PropTypes.string,
     isSearchActive: PropTypes.bool.isRequired,
-    searchable: PropTypes.object,
-    style: PropTypes.object,
+    style: PropTypes.shape({
+        leftElementContainer: ViewPropTypes.style,
+        leftElement: Text.propTypes.style,
+    }),
     size: PropTypes.number,
     leftElement: PropTypes.node,
     onLeftElementPress: PropTypes.func,
     onSearchClose: PropTypes.func,
 };
 const defaultProps = {
+    leftElementTestID: null,
     leftElement: null,
     onLeftElementPress: null,
     onSearchClose: null,
-    searchable: null,
     style: {},
     size: 24,
 };
@@ -27,7 +31,6 @@ const contextTypes = {
     uiTheme: PropTypes.object.isRequired,
 };
 
-const SEARCH_BACK_ICON = 'arrow-back';
 const SEARCH_FORWARD_ICON = 'arrow-forward';
 
 function shouldUpdateStyles(props, nextProps) {
@@ -88,14 +91,9 @@ class LeftElement extends PureComponent {
             toValue: 0.5,
             duration: 112,
             easing: Easing.linear,
-            useNativeDriver: Platform.OS === 'android',
+            useNativeDriver: true,
         }).start(() => {
-            let leftElement = activate ? SEARCH_FORWARD_ICON : this.props.leftElement;
-
-            if (!this.state.leftElement) {
-                // because there won't be animation in this case
-                leftElement = SEARCH_BACK_ICON;
-            }
+            const leftElement = activate ? SEARCH_FORWARD_ICON : this.props.leftElement;
 
             this.setState({ leftElement });
 
@@ -103,13 +101,14 @@ class LeftElement extends PureComponent {
                 toValue,
                 duration: 112,
                 easing: Easing.linear,
-                useNativeDriver: Platform.OS === 'android',
+                useNativeDriver: true,
             }).start();
         });
     }
     render() {
         const { styles, leftElement, spinValue } = this.state;
         const {
+            leftElementTestID,
             isSearchActive,
             onLeftElementPress,
             onSearchClose,
@@ -143,6 +142,7 @@ class LeftElement extends PureComponent {
 
         return (
             <Animated.View
+                testID={leftElementTestID}
                 style={[
                     styles.leftElementContainer,
                     { transform: [{ rotate: spin }] },
