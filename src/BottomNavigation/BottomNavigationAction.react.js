@@ -123,10 +123,7 @@ function getStyles(props, context) {
 }
 
 class BottomNavigationAction extends PureComponent {
-    renderIcon(icon, styles, color) { 
-        const { icon } = this.props;
-        const { color } = StyleSheet.flatten(styles.icon);
-
+    renderIcon(icon, styles, color) {
         let element;
         if (React.isValidElement(icon)) {
             // we need icon to change color after it's selected, so we send the color and style to
