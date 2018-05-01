@@ -151,6 +151,9 @@ class BottomNavigationAction extends PureComponent {
 
         const styles = getStyles(this.props, this.context);
 
+        const color = StyleSheet.flatten(styles.icon).color;
+        const iconElement = this.renderIcon(icon, styles, color); 
+
         return (
             <RippleFeedback onPress={onPress}>
                 <View style={styles.container}>
