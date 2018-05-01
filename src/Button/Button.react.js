@@ -171,7 +171,6 @@ class Button extends PureComponent {
         super(props);
         this.state = {
             elevation: 2, // eslint-disable-line
-            elevation: 2
         };
     }
     onPress = () => {
@@ -217,7 +216,7 @@ class Button extends PureComponent {
         return result;
     }
     render() {
-        const { text, disabled, raised, upperCase, onLongPress, iconPosition } = this.props;
+        const { text, disabled, raised, upperCase, onLongPress, iconPosition, testID } = this.props;
 
         const styles = getStyles(this.props, this.context, this.state);
 
