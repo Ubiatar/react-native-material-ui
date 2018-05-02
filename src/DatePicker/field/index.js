@@ -12,7 +12,7 @@ import {
     DatePickerAndroid
 } from 'react-native';
 
-import { Icon } from 'react-native-material-ui'
+import Icon from '../../Icon'
 
 import RN from 'react-native/package.json';
 
