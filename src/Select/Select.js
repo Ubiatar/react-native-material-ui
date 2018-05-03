@@ -20,15 +20,15 @@
 
 'use strict';
 
-import SelectIOS from './SelectIOS.ios'
+// import SelectIOS from './SelectIOS.ios'
 
-import SelectAndroid from './SelectAndroid.android'
+// import SelectAndroid from './SelectAndroid.android'
 
 var React = require('react');
 
 const PropTypes = require('prop-types');
 
-import { View, Text, Platform } from 'react-native'
+import { View, Text, Platform, Picker } from 'react-native'
 
 var MODE_DIALOG = 'dialog';
 
@@ -135,11 +135,13 @@ class Select extends React.Component<{
 
         let {labelText} = this.props
 
-        if (Platform.OS === 'ios') {
+        /*if (Platform.OS === 'ios') {
 
             // $FlowFixMe found when converting React.createClass to ES6
 
-            return <SelectIOS {...this.props}>{this.props.children}</SelectIOS>;
+            return <Picker {...this.props}>{this.props.children}</Picker>
+
+            // return <SelectIOS {...this.props}>{this.props.children}</SelectIOS>;
 
         } else if (Platform.OS === 'android') {
 
@@ -158,7 +160,22 @@ class Select extends React.Component<{
 
             return <UnimplementedView />;
 
-        }
+        }*/
+        return (
+            <View>
+                <Text style={{color: 'white', fontFamily: 'Raleway-Regular', fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
+                    {labelText}
+                </Text>
+                <View style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}>
+                    <Picker
+                        {...this.props}
+                        style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}
+                    >
+                        {this.props.children}
+                    </Picker>
+                </View>
+            </View>
+        )
 
     }
 }
