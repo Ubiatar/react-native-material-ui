@@ -1,6 +1,6 @@
 {
   "name": "ubiatar-react-native-material-ui",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Ubiatar React Native Material Design Components",
   "main": "./index.js",
   "scripts": {
