@@ -161,14 +161,20 @@ class Select extends React.Component<{
             return <UnimplementedView />;
 
         }*/
-
         return (
-            <Picker
-                {...this.props}
-                style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}
-            >
-                {this.props.children}
-            </Picker>
+            <View>
+                <Text style={{color: 'white', fontFamily: 'Raleway-Regular', fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
+                    {labelText}
+                </Text>
+                <View style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}>
+                    <Picker
+                        {...this.props}
+                        style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}
+                    >
+                        {this.props.children}
+                    </Picker>
+                </View>
+            </View>
         )
 
     }
