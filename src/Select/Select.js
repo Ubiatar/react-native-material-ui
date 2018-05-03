@@ -45,7 +45,6 @@ var ViewStylePropTypes = require('ViewStylePropTypes');
 var itemStylePropType = StyleSheetPropType(TextStylePropTypes);
 
 import { View, Text } from 'react-native'
-import {colors} from "../../../src/styles/material-ui-theme";
 
 var pickerStyleType = StyleSheetPropType({
 
@@ -313,7 +312,7 @@ class Select extends React.Component<{
             // $FlowFixMe found when converting React.createClass to ES6
 
             return <View>
-                <Text style={{color: colors.textColor, fontFamily: 'Raleway-Regular', fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
+                <Text style={{color: this.context.uiTheme.colors.textColor, fontFamily: 'Raleway-Regular', fontSize: 12, paddingLeft: 12, paddingBottom: 5}}>
                     {labelText}
                 </Text>
                 <View style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}>

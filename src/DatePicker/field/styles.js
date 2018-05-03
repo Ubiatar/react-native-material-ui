@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import {colors} from "../../../../src/styles/material-ui-theme";
 
 export default StyleSheet.create({
   inputContainer: {
