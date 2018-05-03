@@ -23,8 +23,6 @@ import Helper from '../helper';
 import Counter from '../counter';
 
 import styles from './styles.js';
-import Button from "../../Button/Button.react";
-import style from "../../../../src/styles/app-styles";
 import moment from "moment";
 
 const contextTypes = {
