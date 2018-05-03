@@ -24,7 +24,7 @@ import SelectIOS from './SelectIOS.ios'
 
 import SelectAndroid from './SelectAndroid.android'
 
-var React = require('React');
+var React = require('react');
 
 const PropTypes = require('prop-types');
 
