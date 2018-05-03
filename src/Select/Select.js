@@ -20,7 +20,7 @@
 
 'use strict';
 
-import SelectIOS from './SelectIOS.ios'
+// import SelectIOS from './SelectIOS.ios'
 
 import SelectAndroid from './SelectAndroid.android'
 
@@ -28,7 +28,7 @@ var React = require('react');
 
 const PropTypes = require('prop-types');
 
-import { View, Text, Platform } from 'react-native'
+import { View, Text, Platform, Picker } from 'react-native'
 
 var MODE_DIALOG = 'dialog';
 
@@ -139,7 +139,9 @@ class Select extends React.Component<{
 
             // $FlowFixMe found when converting React.createClass to ES6
 
-            return <SelectIOS {...this.props}>{this.props.children}</SelectIOS>;
+            return <Picker {...this.props}>{this.props.children}</Picker>
+
+            // return <SelectIOS {...this.props}>{this.props.children}</SelectIOS>;
 
         } else if (Platform.OS === 'android') {
 
