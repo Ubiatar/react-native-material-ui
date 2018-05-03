@@ -22,7 +22,7 @@
 
 // import SelectIOS from './SelectIOS.ios'
 
-import SelectAndroid from './SelectAndroid.android'
+// import SelectAndroid from './SelectAndroid.android'
 
 var React = require('react');
 
@@ -135,7 +135,7 @@ class Select extends React.Component<{
 
         let {labelText} = this.props
 
-        if (Platform.OS === 'ios') {
+        /*if (Platform.OS === 'ios') {
 
             // $FlowFixMe found when converting React.createClass to ES6
 
@@ -160,7 +160,16 @@ class Select extends React.Component<{
 
             return <UnimplementedView />;
 
-        }
+        }*/
+
+        return (
+            <Picker
+                {...this.props}
+                style={{padding: 0, height: 44, borderRadius: 4, backgroundColor: 'rgba(29, 28, 50, 0.4)'}}
+            >
+                {this.props.children}
+            </Picker>
+        )
 
     }
 }
