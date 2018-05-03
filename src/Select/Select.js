@@ -24,13 +24,11 @@ import SelectIOS from './SelectIOS.ios'
 
 import SelectAndroid from './SelectAndroid.android'
 
-var Platform = require('Platform');
-
 var React = require('React');
 
 const PropTypes = require('prop-types');
 
-import { View, Text } from 'react-native'
+import { View, Text, Platform } from 'react-native'
 
 var MODE_DIALOG = 'dialog';
 
