@@ -92,7 +92,7 @@ const s = StyleSheet.create({
         padding: 0,
         height: 44,
         borderRadius: 4,
-        backgroundColor: 'rgba(29, 28, 50, 0.4)',
+        backgroundColor: 'transparent',
         justifyContent: 'space-around',
     },
     textContainer: {
