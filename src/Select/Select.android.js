@@ -62,7 +62,7 @@ class Select extends Component {
                         onValueChange={onValueChange}
                         selectedValue={selectedValue}
                         mode='dialog'
-                        style={{color: 'white'}}
+                        style={{color: 'white', marginLeft: 8}}
                     >
                         {
                             items.map((item, index) =>
