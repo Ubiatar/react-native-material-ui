@@ -83,6 +83,8 @@ const s = StyleSheet.create({
         borderRadius: 4,
         backgroundColor: 'transparent',
         justifyContent: 'space-around',
+        borderWidth: 1,
+        borderColor: '#cccccc'
     },
     textContainer: {
         paddingLeft: 12,

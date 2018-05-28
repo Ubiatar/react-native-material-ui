@@ -76,7 +76,8 @@ export default class DatePicker extends PureComponent {
         disabledLineType: 'dotted',
         disabledLineWidth: 1,
 
-        confirmLabel: 'Confirm'
+        confirmLabel: 'Confirm',
+        type: 'dark'
     };
 
     static propTypes = {
@@ -397,6 +398,7 @@ export default class DatePicker extends PureComponent {
             clearTextOnFocus,
             onChange,
             confirmLabel,
+            type,
             ...props
         } = this.props;
 
@@ -579,7 +581,7 @@ export default class DatePicker extends PureComponent {
                             ref={this.updateRef}
                             onPress={!disabled ? () => this.onPress(value) : null}
                         />
-                        <Icon {...props} style={{padding: 10, color: customStyles.textColor}} name='date-range' value={value} onPress={!disabled ? () => this.onPress(value) : null}/>
+                        <Icon {...props} style={type === 'dark' ? {padding: 10, color: customStyles.textColor} : {padding: 10, color: 'black'} } name='date-range' value={value} onPress={!disabled ? () => this.onPress(value) : null}/>
                         {this.renderAffix('suffix', active, focused)}
                         {this.renderAccessory()}
 

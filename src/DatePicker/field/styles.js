@@ -13,6 +13,18 @@ export default StyleSheet.create({
         fontFamily: 'Raleway-Regular'
     },
 
+    lightInput: {
+        top: 2,
+        padding: 0,
+        margin: 0,
+        flex: 1,
+        fontFamily: 'Raleway-Regular',
+        color: 'black',
+        borderWidth: 1,
+        borderColor: '#cccccc',
+        backgroundColor: 'white'
+    },
+
     row: {
         flexDirection: 'row'
     },
