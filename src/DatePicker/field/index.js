@@ -76,7 +76,8 @@ export default class DatePicker extends PureComponent {
         disabledLineType: 'dotted',
         disabledLineWidth: 1,
 
-        confirmLabel: 'Confirm'
+        confirmLabel: 'Confirm',
+        type: 'dark'
     };
 
     static propTypes = {
@@ -188,8 +189,8 @@ export default class DatePicker extends PureComponent {
             let toValue = this.focusState(props.error, state.focused);
 
             Animated
-            .timing(focus, { toValue, duration })
-            .start(this.onFocusAnimationEnd);
+                .timing(focus, { toValue, duration })
+                .start(this.onFocusAnimationEnd);
         }
     }
 
@@ -243,21 +244,21 @@ export default class DatePicker extends PureComponent {
             DatePickerAndroid.open({
                 date: new Date()
             })
-            .then(result => {
-                const {action, year, month, day} = result
-                if (action !== DatePickerAndroid.dismissedAction) {
-                    // Selected year, month (0-11), day
-                    let date = moment({year: year, month: month, day: day}).format('DD MMMM Y')
-                    value = date
-                    if ('function' === typeof onChange ) {
-                        console.log(value)
-                        onChange(value)
+                .then(result => {
+                    const {action, year, month, day} = result
+                    if (action !== DatePickerAndroid.dismissedAction) {
+                        // Selected year, month (0-11), day
+                        let date = moment({year: year, month: month, day: day}).format('DD MMMM Y')
+                        value = date
+                        if ('function' === typeof onChange ) {
+                            console.log(value)
+                            onChange(value)
+                        }
                     }
-                }
-            })
-            .catch(({code, message}) => {
-                console.warn('Cannot open date picker', message);
-            })
+                })
+                .catch(({code, message}) => {
+                    console.warn('Cannot open date picker', message);
+                })
         } else {
             this.setState({datePickerIOSOpen: true});
         }
@@ -398,6 +399,7 @@ export default class DatePicker extends PureComponent {
             clearTextOnFocus,
             onChange,
             confirmLabel,
+            type,
             ...props
         } = this.props;
 
@@ -452,15 +454,15 @@ export default class DatePicker extends PureComponent {
             fontSize,
 
             textAlign,
-            backgroundColor: 'rgba(29, 28, 50, 0.4)',
+            backgroundColor: (type === 'dark') ? 'rgba(29, 28, 50, 0.4)' : 'white',
             borderRadius: 4,
             paddingLeft: 12,
-            borderColor: focused ? (!errored ? customStyles.textColor : customStyles.errorColor)
-                : ( errored ? customStyles.errorColor : 'transparent'),
+            borderColor: focused ? (!errored ? (type === 'dark') ? customStyles.textColor : '#cccccc' : customStyles.errorColor)
+                : ( errored ? customStyles.errorColor : (type === 'dark') ? 'transparent' : '#cccccc'),
             borderWidth: 1,
             color: (disabled || defaultVisible)?
                 baseColor:
-                !errored ? customStyles.textColor: customStyles.errorColor,
+                !errored ? (type === 'dark') ? customStyles.textColor : 'black' : customStyles.errorColor,
 
             ...(props.multiline?
                 {
@@ -475,7 +477,7 @@ export default class DatePicker extends PureComponent {
         };
 
         let errorStyle = {
-            color: customStyles.textColor,
+            color: (type === 'dark') ? customStyles.textColor : customStyles.errorColor,
             fontFamily: customStyles.regularFont,
             paddingLeft: 12,
             opacity: focus.interpolate({
@@ -536,9 +538,9 @@ export default class DatePicker extends PureComponent {
             fontSize,
             fontFamily: customStyles.regularFont,
             activeFontSize: labelFontSize,
-            tintColor: customStyles.textColor,
-            baseColor: customStyles.textColor,
-            errorColor: customStyles.textColor,
+            tintColor: (type === 'dark') ? customStyles.textColor : 'black',
+            baseColor: (type === 'dark') ? customStyles.textColor : 'black',
+            errorColor: (type === 'dark') ? customStyles.textColor : 'black',
             animationDuration,
             active,
             focused,
@@ -580,7 +582,7 @@ export default class DatePicker extends PureComponent {
                             ref={this.updateRef}
                             onPress={!disabled ? () => this.onPress(value) : null}
                         />
-                        <Icon {...props} style={{padding: 10, color: customStyles.textColor}} name='date-range' value={value} onPress={!disabled ? () => this.onPress(value) : null}/>
+                        <Icon {...props} style={type === 'dark' ? {padding: 10, color: customStyles.textColor} : {padding: 10, color: 'black'} } name='date-range' value={value} onPress={!disabled ? () => this.onPress(value) : null}/>
                         {this.renderAffix('suffix', active, focused)}
                         {this.renderAccessory()}
 
