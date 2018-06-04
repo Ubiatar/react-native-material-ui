@@ -90,7 +90,7 @@ export default class TextField extends PureComponent {
         textColor: PropTypes.string,
         baseColor: PropTypes.string,
 
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string,
         title: PropTypes.string,
 
         characterRestriction: PropTypes.number,
@@ -535,7 +535,7 @@ export default class TextField extends PureComponent {
                 <Animated.View {...inputContainerProps}>
                     {disabled && <Line {...lineProps} />}
 
-                    <Label {...labelProps}>{label}</Label>
+                    {label && <Label {...labelProps}>{label}</Label>}
 
                     <View style={styles.row}>
                         {this.renderAffix('prefix', active, focused)}

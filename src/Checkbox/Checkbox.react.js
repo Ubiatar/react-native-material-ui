@@ -11,7 +11,7 @@ const propTypes = {
     /**
     * Text will be shown after Icon
     */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     /**
     * Value will be returned when onCheck is fired
     */

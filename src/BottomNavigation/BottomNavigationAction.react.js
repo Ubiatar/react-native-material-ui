@@ -22,7 +22,10 @@ const propTypes = {
     /**
     * Will be rendered under the icon as a content of the action.
     */
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
+    ]),
     /**
     * True if the action is active (for now it'll be highlight by primary color)
     */
@@ -156,7 +159,11 @@ class BottomNavigationAction extends PureComponent {
                 <View style={styles.container}>
                     { tabIndicator && active ? <View collapsable={false} style={styles.tabIndicator}></View> : null }
                     {iconElement}
-                    <Text style={styles.label}>{label}</Text>
+                    {
+                        typeof label === 'string' ?
+                            <Text style={styles.label}>{label}</Text> :
+                            label
+                    }
                 </View>
             </RippleFeedback>
         );
