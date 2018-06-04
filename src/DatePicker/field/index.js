@@ -151,7 +151,8 @@ export default class DatePicker extends PureComponent {
 
             height: fontSize * 1.5,
 
-            datePickerIOSOpen: false
+            datePickerIOSOpen: false,
+            dateValue: moment(new Date()).format('DD MMMM YYYY')
         };
     }
 
@@ -367,7 +368,7 @@ export default class DatePicker extends PureComponent {
     render() {
         const customStyles = getStyles(this.props, this.context);
 
-        let { receivedFocus, focus, focused, error, errored, height, text = '', datePickerIOSOpen } = this.state;
+        let { receivedFocus, focus, focused, error, errored, height, text = '', datePickerIOSOpen, dateValue } = this.state;
         let {
             style: inputStyleOverrides,
             label,
@@ -607,13 +608,16 @@ export default class DatePicker extends PureComponent {
                                             <Typography style={{fontSize: 20}} type='darkText'>{label}</Typography>
                                         </View>
                                         <DatePickerIOS
-                                            date={moment(value, "DD MMMM YYYY").toDate()}
-                                            onDateChange={date => onChange(moment(date).format('DD MMMM YYYY'))}
+                                            date={moment(dateValue, "DD MMMM YYYY").toDate()}
+                                            onDateChange={date => this.setState({dateValue: moment(date).format('DD MMMM YYYY')})}
                                             mode='date'
                                         />
                                         <Button
                                             primary
-                                            onPress={() => this.setState({datePickerIOSOpen: false})}
+                                            onPress={() => {
+                                                onChange(dateValue)
+                                                this.setState({datePickerIOSOpen: false})
+                                            }}
                                             text={confirmLabel}
                                             upperCase={false}
                                             style={{text: {fontSize: 18}}}
