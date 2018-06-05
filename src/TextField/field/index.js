@@ -424,7 +424,7 @@ export default class TextField extends PureComponent {
             zIndex: -1,
             fontSize,
             textAlign,
-            backgroundColor: (type === 'dark') ? 'rgba(29, 28, 50, 0.4)' : 'white',
+            backgroundColor: (type === 'dark') ? 'rgba(29, 28, 50, 0.4)' : 'transparent',
 
             borderRadius: 4,
             paddingLeft: 12,
@@ -478,11 +478,11 @@ export default class TextField extends PureComponent {
 
         let helperContainerStyle = {
             flexDirection: 'row',
-            height: 8
+            height: 20
         };
 
         let containerProps = {
-            style: containerStyle,
+            style: [styles.containerStyle, containerStyle],
             onStartShouldSetResponder: () => true,
             onResponderRelease: this.onPress,
             pointerEvents: !disabled && editable?
