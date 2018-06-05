@@ -1,9 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    containerStyle: {
-        marginBottom: 5
-    },
+    containerStyle: {},
+
     inputContainer: {
         backgroundColor: 'transparent',
     },

@@ -67,7 +67,9 @@ export default class TextField extends PureComponent {
         disabled: false,
         disabledLineType: 'dotted',
         disabledLineWidth: 1,
-        type: 'dark'
+        type: 'dark',
+
+        hideHelper: false
     };
 
     static propTypes = {
@@ -112,6 +114,8 @@ export default class TextField extends PureComponent {
 
         containerStyle: (ViewPropTypes || View.propTypes).style,
         inputContainerStyle: (ViewPropTypes || View.propTypes).style,
+
+        hideHelper: PropTypes.bool
     };
 
     constructor(props) {
@@ -372,6 +376,7 @@ export default class TextField extends PureComponent {
             inputContainerStyle: inputContainerStyleOverrides,
             clearTextOnFocus,
             type,
+            hideHelper,
             ...props
         } = this.props;
 
@@ -482,7 +487,10 @@ export default class TextField extends PureComponent {
         };
 
         let containerProps = {
-            style: [styles.containerStyle, containerStyle],
+            style: [
+                styles.containerStyle,
+                containerStyle
+            ],
             onStartShouldSetResponder: () => true,
             onResponderRelease: this.onPress,
             pointerEvents: !disabled && editable?
@@ -531,7 +539,7 @@ export default class TextField extends PureComponent {
         };
 
         return (
-            <View style={{}}{...containerProps}>
+            <View {...containerProps}>
                 <Animated.View {...inputContainerProps}>
                     {disabled && <Line {...lineProps} />}
 
@@ -559,14 +567,16 @@ export default class TextField extends PureComponent {
                     </View>
                 </Animated.View>
 
-                <Animated.View style={helperContainerStyle}>
-                    <View style={styles.flex}>
-                        <Helper style={[errorStyle, titleTextStyle]}>{error}</Helper>
-                        <Helper style={[titleStyle, titleTextStyle]}>{title}</Helper>
-                    </View>
+                {
+                    !hideHelper && <Animated.View style={helperContainerStyle}>
+                        <View style={styles.flex}>
+                            <Helper style={[errorStyle, titleTextStyle]}>{error}</Helper>
+                            <Helper style={[titleStyle, titleTextStyle]}>{title}</Helper>
+                        </View>
 
-                    <Counter {...counterProps} />
-                </Animated.View>
+                        <Counter {...counterProps} />
+                    </Animated.View>
+                }
             </View>
         );
     }
