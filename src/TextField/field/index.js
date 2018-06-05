@@ -535,7 +535,7 @@ export default class TextField extends PureComponent {
                 <Animated.View {...inputContainerProps}>
                     {disabled && <Line {...lineProps} />}
 
-                    {label && <Label {...labelProps}>{label}</Label>}
+                    {!!label && <Label {...labelProps}>{label}</Label>}
 
                     <View style={styles.row}>
                         {this.renderAffix('prefix', active, focused)}
