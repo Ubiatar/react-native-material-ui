@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox';
 
 const propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
