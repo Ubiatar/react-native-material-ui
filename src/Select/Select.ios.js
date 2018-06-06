@@ -79,7 +79,7 @@ class Select extends Component {
                                         </View>
                                         <Picker
                                             selectedValue={val}
-                                            style={{ height: ( Dimensions.get('window').width / 100 ) * 80, width: 250 }}
+                                            style={{ height: 250, width: 250 }}
                                             onValueChange={value => this.setState({val: value})}
                                             itemStyle={{color: 'black'}}
                                         >
