@@ -251,7 +251,6 @@ export default class DatePicker extends PureComponent {
                         let date = moment({year: year, month: month, day: day}).format('DD MMMM Y')
                         value = date
                         if ('function' === typeof onChange ) {
-                            console.log(value)
                             onChange(value)
                         }
                     }

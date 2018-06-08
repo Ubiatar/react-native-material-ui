@@ -50,7 +50,6 @@ class Select extends Component {
         const {pickerOpen, val} = this.state
         let selected = options.find(el => el.value === selectedValue)
         let label = selected ? selected.label : placeHolder;
-        console.log(pickerOpen)
 
         return (
             <View>
