@@ -28,3 +28,4 @@ export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
 export { default as Typography } from './Typography';
 export { default as Snackbar } from './Snackbar';
+export { default as Slider } from './Slider';
