@@ -33,7 +33,6 @@ export default class Slider extends Component {
         value: PropTypes.number.isRequired,
         onChangeText: PropTypes.func,
         color: PropTypes.string,
-        style: View.propTypes.style,
         step: PropTypes.number
     }
 
