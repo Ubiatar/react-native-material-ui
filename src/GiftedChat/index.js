@@ -1,1 +1,1 @@
-export { default } from './GiftedChat'
+export { GiftedChat } from './GiftedChat'
