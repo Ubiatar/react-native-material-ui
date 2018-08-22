@@ -39,7 +39,7 @@ import {
   DATE_FORMAT,
 } from './Constant';
 
-class GiftedChat extends React.Component {
+export default class GiftedChat extends React.Component {
 
   constructor(props) {
     super(props);
@@ -610,7 +610,6 @@ GiftedChat.propTypes = {
 };
 
 export {
-  GiftedChat,
   Actions,
   Avatar,
   Bubble,

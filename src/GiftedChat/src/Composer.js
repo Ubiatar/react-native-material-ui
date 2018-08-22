@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Platform, StyleSheet, TextInput, View } from 'react-native';
-import {TextField} from '../TextField';
+import {TextField} from '../../TextField/index';
 import { MIN_COMPOSER_HEIGHT, DEFAULT_PLACEHOLDER } from './Constant';
 import Color from './Color';
 
