@@ -18,6 +18,7 @@ export { default as DialogDefaultActions } from './Dialog/DialogDefaultActions.r
 export { default as DialogStackedActions } from './Dialog/DialogStackedActions.react';
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';
+export { default as GiftedChat } from './GiftedChat';
 export { default as Icon } from './Icon';
 export { default as IconToggle } from './IconToggle';
 export { default as ListItem } from './ListItem';
