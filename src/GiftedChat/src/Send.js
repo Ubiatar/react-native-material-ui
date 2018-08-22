@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, ViewPropTypes } from 'react-native';
 import Color from './Color';
-import {Icon} from '../../Icon/index'
+import Icon from '../../Icon/index'
 
 export default function Send({ text, containerStyle, onSend, children, textStyle, label }) {
     return (

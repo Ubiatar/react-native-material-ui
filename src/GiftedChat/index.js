@@ -1,1 +1,1 @@
-export default from './src/GiftedChat';
+export { default } from './src/GiftedChat';

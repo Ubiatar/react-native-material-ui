@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Platform, StyleSheet, TextInput, View } from 'react-native';
-import {TextField} from '../../TextField/index';
+import TextField from '../../TextField/index';
 import { MIN_COMPOSER_HEIGHT, DEFAULT_PLACEHOLDER } from './Constant';
 import Color from './Color';
 
@@ -32,7 +32,7 @@ export default class Composer extends React.Component {
   render() {
     return (
       <View style={{width: '85%', padding: 3, marginRight: 12}}>
-        <TextInput
+        <TextField
           testID={this.props.placeholder}
           accessible
           accessibilityLabel={this.props.placeholder}
