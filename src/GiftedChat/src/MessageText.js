@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Linking, StyleSheet, Text, View, ViewPropTypes } from 'react-native';
-
+import Typography from '../../Typography'
 import ParsedText from 'react-native-parsed-text';
 import Communications from 'react-native-communications';
 
@@ -83,7 +83,7 @@ export default class MessageText extends React.Component {
           ]}
           childrenProps={{ ...this.props.textProps }}
         >
-          {this.props.currentMessage.text}
+            {this.props.currentMessage.deleted ? <Typography type='darkText' style={{fontFamily: 'Raleway-Italic', color: '#888'}}>{this.props.currentMessage.text}</Typography> : this.props.currentMessage.text}
         </ParsedText>
       </View>
     );
