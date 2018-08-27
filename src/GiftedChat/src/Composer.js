@@ -31,7 +31,7 @@ export default class Composer extends React.Component {
 
   render() {
     return (
-      <View style={{width: '85%', padding: 3, marginRight: 12}}>
+      <View style={{width: '75%', padding: 3, marginRight: 12}}>
         <TextField
           testID={this.props.placeholder}
           accessible

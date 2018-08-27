@@ -36,8 +36,8 @@ export default class Actions extends React.Component {
       return this.props.icon();
     }
     return (
-      <View style={[styles.wrapper, this.props.wrapperStyle]}>
-        <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Icon size={28} name='add-a-photo' color='#888'/>
       </View>
     );
   }
