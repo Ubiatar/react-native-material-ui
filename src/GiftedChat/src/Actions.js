@@ -37,7 +37,7 @@ export default class Actions extends React.Component {
     }
     return (
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Icon size={28} name='add-a-photo' color='#888'/>
+        <Icon size={26} name='add-a-photo' color='#888'/>
       </View>
     );
   }
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     marginLeft: 10,
-    marginBottom: 10,
+    marginBottom: 15,
   },
   wrapper: {
     borderRadius: 13,
