@@ -38,7 +38,8 @@
     "color": "2.0.1",
     "lodash.merge": "^4.0.0",
     "prop-types": "^15.5.10",
-    "react-native-material-design-styles": "^0.2.6"
+    "react-native-material-design-styles": "^0.2.6",
+    "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
