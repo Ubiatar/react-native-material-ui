@@ -39,10 +39,12 @@
     "color": "2.0.1",
     "lodash.merge": "^4.0.0",
     "prop-types": "^15.5.10",
+    "react-native-communications": "2.2.1",
     "react-native-joi": "0.0.5",
     "react-native-joi-form-decorator": "0.3.5",
     "react-native-lightbox": "0.7.0",
     "react-native-material-design-styles": "^0.2.6",
+    "react-native-parsed-text": "0.0.20",
     "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {
@@ -60,8 +62,6 @@
     "jest": "21.2.1",
     "react": "16.0.0",
     "react-native": "0.50.4",
-    "react-native-communications": "^2.2.1",
-    "react-native-parsed-text": "0.0.20",
     "react-native-vector-icons": "^4.0.0",
     "react-test-renderer": "16.1.1"
   }
