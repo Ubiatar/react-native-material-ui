@@ -60,7 +60,7 @@
     "react": "16.0.0",
     "react-native": "0.50.4",
     "react-native-communications": "^2.2.1",
-    "react-native-lightbox": "^0.7.0",
+    "react-native-lightbox": "0.7.0",
     "react-native-parsed-text": "0.0.20",
     "react-native-vector-icons": "^4.0.0",
     "react-test-renderer": "16.1.1"
