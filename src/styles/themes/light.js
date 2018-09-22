@@ -4,6 +4,7 @@ import {
     red500,
     white,
     black,
+    green500,
 } from '../colors';
 
 import spacing from '../spacing';
@@ -17,6 +18,7 @@ export default {
         // main theme colors
         primaryColor: blue500,
         accentColor: red500,
+        secondaryColor: green500,
         // text color palette
         primaryTextColor: Color(black).alpha(.87).toString(),
         secondaryTextColor: Color(black).alpha(.54).toString(),

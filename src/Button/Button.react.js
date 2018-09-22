@@ -9,6 +9,7 @@ import RippleFeedback from '../RippleFeedback';
 /* eslint-disable import/no-unresolved, import/extensions */
 import getPlatformElevation from '../styles/getPlatformElevation';
 /* eslint-enable import/no-unresolved, import/extensions */
+import LinearGradient from 'react-native-linear-gradient'
 
 const propTypes = {
     testID: PropTypes.string,
@@ -55,6 +56,7 @@ const propTypes = {
     }),
     primary: PropTypes.bool,
     accent: PropTypes.bool,
+    gradient: PropTypes.bool,
 };
 const defaultProps = {
     testID: null,
@@ -65,6 +67,7 @@ const defaultProps = {
     accent: false,
     disabled: false,
     raised: false,
+    gradient: false,
     upperCase: true,
     iconPosition: 'left',
     style: {},
@@ -78,12 +81,14 @@ function getStyles(props, context, state) {
         button,
         buttonFlat,
         buttonRaised,
+        buttonGradient,
+        buttonGradientDisabled,
         buttonDisabled,
         buttonRaisedDisabled,
     } = context.uiTheme;
 
     const {
-        primary, accent, disabled, raised,
+        primary, accent, disabled, raised, gradient,
     } = props;
     const { palette } = context.uiTheme;
 
@@ -93,39 +98,21 @@ function getStyles(props, context, state) {
 
     if (!disabled) {
         if (primary && !raised) {
-            local.text = { color: palette.primaryColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+            local.text = { color: palette.primaryColor };
         } else if (accent && !raised) {
-            local.text = { color: palette.accentColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+            local.text = { color: palette.accentColor };
         }
 
         if (primary && raised) {
             local.container.backgroundColor = palette.primaryColor;
-            local.text = { color: palette.canvasColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+            local.text = { color: palette.canvasColor };
         } else if (accent && raised) {
             local.container.backgroundColor = palette.accentColor;
-            local.text = { color: palette.canvasColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+            local.text = { color: palette.canvasColor };
         }
 
-        if (!primary && !raised) {
-            local.text = { color: palette.darkPrimary, fontWeight: '400', fontFamily: 'Raleway-Bold' };
-        } else if (accent && raised) {
-            local.text = { color: palette.darkPrimary, fontWeight: '400', fontFamily: 'Raleway-Bold' };
-        }
-    }
-
-    if (disabled) {
-        if (primary && !raised) {
-            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
-        } else if (accent && !raised) {
-            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
-        }
-
-        if (primary && raised) {
-            local.container.backgroundColor = palette.disabledColor;
-            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
-        } else if (accent && raised) {
-            local.container.backgroundColor = palette.accentColor;
-            local.text = { color: palette.disabledColor, fontWeight: '400', fontFamily: 'Raleway-Bold' };
+        if (gradient) {
+            local.container.backgroundColor = 'transparent';
         }
     }
 
@@ -136,6 +123,8 @@ function getStyles(props, context, state) {
         };
     }
 
+    console.log(local)
+
     return {
         container: [
             button.container,
@@ -143,6 +132,8 @@ function getStyles(props, context, state) {
             raised && buttonRaised.container,
             (!raised && disabled) && buttonDisabled.container,
             (raised && disabled) && buttonRaisedDisabled.container,
+            gradient && buttonGradient.container,
+            gradient && disabled && buttonGradientDisabled.container,
             local.container,
             props.style.container,
         ],
@@ -152,6 +143,8 @@ function getStyles(props, context, state) {
             raised && buttonRaised.text,
             (!raised && disabled) && buttonDisabled.text,
             (raised && disabled) && buttonRaisedDisabled.text,
+            gradient && buttonGradient.text,
+            gradient && disabled && buttonGradientDisabled.text,
             local.text,
             props.style.text,
         ],
@@ -160,6 +153,8 @@ function getStyles(props, context, state) {
             !raised && buttonFlat.icon,
             disabled && buttonDisabled.icon,
             raised && buttonRaised.icon,
+            gradient && buttonGradient.icon,
+            gradient && disabled && buttonGradientDisabled.icon,
             local.icon,
             props.style.icon,
         ],
@@ -216,28 +211,52 @@ class Button extends PureComponent {
         return result;
     }
     render() {
-        const { text, disabled, raised, upperCase, onLongPress, iconPosition, testID } = this.props;
+        const { text, disabled, raised, upperCase, onLongPress, iconPosition, testID, gradient } = this.props;
 
         const styles = getStyles(this.props, this.context, this.state);
 
+        const { palette } = this.context.uiTheme
+
         const content = (
-            iconPosition === 'left' ?
+            iconPosition === 'left' ? (
                 <View style={styles.container}>
                     {this.renderIcon(styles)}
                     <Text style={styles.text}>
                         {upperCase ? text.toUpperCase() : text}
                     </Text>
-                </View> :
+                </View>) : (
                 <View style={styles.container}>
                     <Text style={styles.text}>
                         {upperCase ? text.toUpperCase() : text}
                     </Text>
                     {this.renderIcon(styles)}
-                </View>
+                </View>)
         );
 
         if (disabled) {
             return content;
+        }
+
+        if (gradient) {
+            return (
+                <LinearGradient
+                    style={styles.container}
+                    colors={[palette.primaryColor, palette.secondaryColor]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                >
+                    <RippleFeedback
+                        testID={testID}
+                        onPress={!disabled ? this.onPress : null}
+                        onLongPress={!disabled ? onLongPress : null}
+                        onPressIn={raised ? this.setElevation : null}
+                        onPressOut={raised ? this.removeElevation : null}
+                        delayPressIn={50}
+                    >
+                        {content}
+                    </RippleFeedback>
+                </LinearGradient>
+            );
         }
 
         return (

@@ -179,6 +179,15 @@ export default function getTheme(theme, ...more) {
                 color: palette.disabledTextColor,
             },
         }, theme.buttonRaisedDisabled)),
+        buttonGradient: StyleSheet.create(merge({}, theme.buttonGradient)),
+        buttonGradientDisabled: StyleSheet.create(merge({
+            container: {
+                backgroundColor: palette.borderColor,
+            },
+            text: {
+                color: palette.disabledTextColor,
+            },
+        }, theme.buttonGradientDisabled)),
         bottomNavigation: StyleSheet.create(merge({
             container: {
                 height: 56,

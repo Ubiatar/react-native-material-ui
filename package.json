@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/Ubiatar/react-native-material-ui",
   "peerDependencies": {
-    "react-native-vector-icons": "^4.0.0"
+    "react-native-vector-icons": "^4.0.0",
+    "react-native-linear-gradient": "2.4.2"
   },
   "dependencies": {
     "@expo/react-native-action-sheet": "1.1.0",
