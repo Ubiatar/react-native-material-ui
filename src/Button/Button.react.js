@@ -123,8 +123,6 @@ function getStyles(props, context, state) {
         };
     }
 
-    console.log(local)
-
     return {
         container: [
             button.container,
@@ -217,15 +215,23 @@ class Button extends PureComponent {
 
         const { palette } = this.context.uiTheme
 
+        const s = {
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+        }
+
         const content = (
             iconPosition === 'left' ? (
-                <View style={styles.container}>
+                <View style={gradient ? s : styles.container}>
                     {this.renderIcon(styles)}
                     <Text style={styles.text}>
                         {upperCase ? text.toUpperCase() : text}
                     </Text>
                 </View>) : (
-                <View style={styles.container}>
+                <View style={gradient ? s : styles.container}>
                     <Text style={styles.text}>
                         {upperCase ? text.toUpperCase() : text}
                     </Text>
