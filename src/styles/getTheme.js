@@ -484,6 +484,7 @@ export default function getTheme(theme, ...more) {
                 ...typography.body2,
             },
         }, theme.subheader)),
+        textfield: StyleSheet.create(merge({}, theme.textfield)),
         toolbar: StyleSheet.create(merge({
             container: {
                 backgroundColor: palette.primaryColor,
