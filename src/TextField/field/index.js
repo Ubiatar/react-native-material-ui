@@ -347,7 +347,16 @@ export default class TextField extends PureComponent {
     render() {
         const customStyles = getStyles(this.props, this.context);
 
-        let { receivedFocus, focus, focused, error, errored, height, text = '' } = this.state;
+        let {
+            receivedFocus,
+            focus,
+            focused,
+            error,
+            errored,
+            height,
+            text = '',
+        } = this.state;
+
         let {
             style: inputStyleOverrides,
             label,
@@ -385,7 +394,7 @@ export default class TextField extends PureComponent {
             height = props.height;
         }
 
-        let defaultVisible = !(receivedFocus || null != value || null == defaultValue);
+        const defaultVisible = !(receivedFocus || null != value || null == defaultValue);
 
         value = defaultVisible?
             defaultValue:

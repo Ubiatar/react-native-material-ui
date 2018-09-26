@@ -536,6 +536,14 @@ export default function getTheme(theme, ...more) {
                 color: palette.secondaryTextColor,
             },
         }, theme.toolbarSearchActive)),
+        typography: StyleSheet.create(merge({
+            text: {
+                fontFamily,
+                fontWeight: fontWeight.normal,
+                fontSize: 12,
+                color: palette.primaryTextColor,
+            },
+        }, theme.toolbarSearchActive)),
     }, baseTheme);
 
     return theme;
