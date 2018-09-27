@@ -98,7 +98,7 @@ export default class TextField extends PureComponent {
     inputContainerStyle: (ViewPropTypes || View.propTypes).style,
 
     lineCircle: PropTypes.bool,
-    inputStyle: (ViewPropTypes || View.propTypes).style,
+    inputStyle: Text.propTypes.style,
   };
 
   constructor(props) {
