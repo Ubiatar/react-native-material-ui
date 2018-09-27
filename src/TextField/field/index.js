@@ -51,6 +51,7 @@ export default class TextField extends PureComponent {
     disabledLineWidth: 1,
 
     lineCircle: false,
+    inputStyle: {},
   };
 
   static propTypes = {
@@ -97,6 +98,7 @@ export default class TextField extends PureComponent {
     inputContainerStyle: (ViewPropTypes || View.propTypes).style,
 
     lineCircle: PropTypes.bool,
+    inputStyle: PropTypes.object,
   };
 
   constructor(props) {
@@ -357,6 +359,7 @@ export default class TextField extends PureComponent {
       inputContainerStyle: inputContainerStyleOverrides,
       clearTextOnFocus,
       lineCircle,
+      inputStyle: inputStyleOverride,
       ...props
     } = this.props;
 
@@ -429,6 +432,7 @@ export default class TextField extends PureComponent {
     let inputStyle = {
       fontSize,
       textAlign,
+      ...StyleSheet.flatten(inputStyleOverride),
 
       color: (disabled || defaultVisible)?
         baseColor:
