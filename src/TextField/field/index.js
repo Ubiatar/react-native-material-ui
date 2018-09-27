@@ -360,8 +360,6 @@ export default class TextField extends PureComponent {
       ...props
     } = this.props;
 
-    console.log(StyleSheet.flatten(inputContainerStyleOverrides))
-
     if (props.multiline && props.height) {
       /* Disable autogrow if height is passed as prop */
       height = props.height;
@@ -427,8 +425,6 @@ export default class TextField extends PureComponent {
         { height: 'web' === Platform.OS ? 'auto' : labelHeight + inputContainerPadding + height }:
         { height: labelHeight + inputContainerPadding + fontSize * 1.5 }),
     };
-
-    console.log(lineCircle, inputContainerStyle)
 
     let inputStyle = {
       fontSize,
@@ -503,8 +499,6 @@ export default class TextField extends PureComponent {
         inputContainerStyleOverrides,
       ],
     };
-
-    console.log('props', inputContainerProps)
 
     let lineProps = {
       type: disabledLineType,
