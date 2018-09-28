@@ -225,13 +225,13 @@ class Button extends PureComponent {
 
         const content = (
             iconPosition === 'left' ? (
-                <View style={gradient ? s : styles.container}>
+                <View style={gradient && !disabled ? s : styles.container}>
                     {this.renderIcon(styles)}
                     <Text style={styles.text}>
                         {upperCase ? text.toUpperCase() : text}
                     </Text>
                 </View>) : (
-                <View style={gradient ? s : styles.container}>
+                <View style={gradient && !disabled ? s : styles.container}>
                     <Text style={styles.text}>
                         {upperCase ? text.toUpperCase() : text}
                     </Text>
