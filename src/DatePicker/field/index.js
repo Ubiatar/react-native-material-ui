@@ -226,7 +226,7 @@ export default class DatePicker extends PureComponent {
         if (Platform.OS === 'android') {
             let { onChange } = this.props;
             DatePickerAndroid.open({
-                date: new Date()
+                date: new Date(this.props.value)
             })
                 .then(result => {
                     const {action, year, month, day} = result
