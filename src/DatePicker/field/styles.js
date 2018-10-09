@@ -26,7 +26,8 @@ export default StyleSheet.create({
     },
 
     row: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     },
 
     flex: {

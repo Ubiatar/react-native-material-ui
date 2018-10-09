@@ -15,7 +15,6 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 
-import Icon from '../../Icon';
 import Typography from '../../Typography';
 import Button from '../../Button'
 
@@ -29,23 +28,6 @@ import Counter from '../counter';
 
 import styles from './styles.js';
 import moment from "moment";
-
-const contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-};
-
-
-function getStyles(props, context) {
-    const { palette, fontFamily } = context.uiTheme;
-
-    return {
-        tintColor: palette.primaryColor,
-        errorColor: palette.errorColor,
-        textColor: palette.textColor,
-        backgroundColor: palette.backgroundColor,
-        regularFont: fontFamily
-    };
-}
 
 export default class DatePicker extends PureComponent {
     static defaultProps = {
@@ -75,7 +57,8 @@ export default class DatePicker extends PureComponent {
         disabled: false,
         disabledLineType: 'dotted',
         disabledLineWidth: 1,
-
+        lineCircle: false,
+        inputStyle: {},
         confirmLabel: 'Confirm',
         type: 'dark'
     };
@@ -99,7 +82,7 @@ export default class DatePicker extends PureComponent {
         textColor: PropTypes.string,
         baseColor: PropTypes.string,
 
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string,
         title: PropTypes.string,
 
         characterRestriction: PropTypes.number,
@@ -121,7 +104,8 @@ export default class DatePicker extends PureComponent {
 
         containerStyle: (ViewPropTypes || View.propTypes).style,
         inputContainerStyle: (ViewPropTypes || View.propTypes).style,
-
+        lineCircle: PropTypes.bool,
+        inputStyle: Text.propTypes.style,
         confirmLabel: PropTypes.string
     };
 
@@ -366,8 +350,6 @@ export default class DatePicker extends PureComponent {
     }
 
     render() {
-        const customStyles = getStyles(this.props, this.context);
-
         let { receivedFocus, focus, focused, error, errored, height, text = '', datePickerIOSOpen, dateValue } = this.state;
         let {
             style: inputStyleOverrides,
@@ -389,8 +371,10 @@ export default class DatePicker extends PureComponent {
             inputContainerPadding,
             labelTextStyle,
             titleTextStyle,
+            tintColor,
             baseColor,
             textColor,
+            errorColor,
             lineWidth,
             activeLineWidth,
             containerStyle,
@@ -399,6 +383,8 @@ export default class DatePicker extends PureComponent {
             onChange,
             confirmLabel,
             type,
+            lineCircle,
+            inputStyle: inputStyleOverride,
             ...props
         } = this.props;
 
@@ -421,27 +407,47 @@ export default class DatePicker extends PureComponent {
             'right':
             'left';
 
-        let borderBottomColor = restricted?
-            customStyles.errorColor:
-            focus.interpolate({
-                inputRange: [-1, 0, 1],
-                outputRange: ['transparent', 'transparent', 'transparent'],
-            });
+        let borderStyle = {}
 
-        let borderBottomWidth = restricted?
-            activeLineWidth:
-            focus.interpolate({
-                inputRange: [-1, 0, 1],
-                outputRange: [activeLineWidth, lineWidth, activeLineWidth],
-            });
+        if (lineCircle) {
+            let borderColor = restricted?
+                errorColor:
+                focus.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [errorColor, baseColor, tintColor],
+                });
+
+            let borderWidth = restricted?
+                activeLineWidth:
+                focus.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [activeLineWidth, lineWidth, activeLineWidth],
+                });
+            borderStyle = { borderColor, borderWidth }
+        } else {
+            let borderBottomColor = restricted?
+                errorColor:
+                focus.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [errorColor, baseColor, tintColor],
+                });
+
+            let borderBottomWidth = restricted?
+                activeLineWidth:
+                focus.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [activeLineWidth, lineWidth, activeLineWidth],
+                });
+            borderStyle = { borderBottomColor, borderBottomWidth }
+        }
 
         let inputContainerStyle = {
-            paddingTop: 15,
-            paddingBottom: 0,
+            paddingTop: labelHeight,
+            paddingBottom: inputContainerPadding,
 
             ...(disabled?
                 { overflow: 'hidden' }:
-                { borderBottomColor, borderBottomWidth }),
+                { ...borderStyle }),
 
             ...(props.multiline?
                 { height: 'web' === Platform.OS ? 'auto' : labelHeight + inputContainerPadding + height }:
@@ -449,19 +455,13 @@ export default class DatePicker extends PureComponent {
         };
 
         let inputStyle = {
-            zIndex: -1,
             fontSize,
-
             textAlign,
-            backgroundColor: (type === 'dark') ? 'rgba(29, 28, 50, 0.4)' : 'white',
-            borderRadius: 4,
-            paddingLeft: 12,
-            borderColor: focused ? (!errored ? (type === 'dark') ? customStyles.textColor : '#cccccc' : customStyles.errorColor)
-                : ( errored ? customStyles.errorColor : (type === 'dark') ? 'transparent' : '#cccccc'),
-            borderWidth: 1,
+            ...StyleSheet.flatten(inputStyleOverride),
+
             color: (disabled || defaultVisible)?
                 baseColor:
-                !errored ? (type === 'dark') ? customStyles.textColor : 'black' : customStyles.errorColor,
+                textColor,
 
             ...(props.multiline?
                 {
@@ -469,16 +469,15 @@ export default class DatePicker extends PureComponent {
 
                     ...Platform.select({
                         ios: { top: -1 },
-                        android: { textAlignVertical: 'center' },
+                        android: { textAlignVertical: 'top' },
                     }),
                 }:
-                { height: fontSize * 1.5 + 20 }),
+                { height: fontSize * 1.5 }),
         };
 
         let errorStyle = {
-            color: (type === 'dark') ? customStyles.textColor : customStyles.errorColor,
-            fontFamily: customStyles.regularFont,
-            paddingLeft: 12,
+            color: errorColor,
+
             opacity: focus.interpolate({
                 inputRange: [-1, 0, 1],
                 outputRange: [1, 0, 0],
@@ -532,14 +531,13 @@ export default class DatePicker extends PureComponent {
         };
 
         let labelProps = {
-            baseSize: 10,
+            baseSize: labelHeight,
             basePadding: labelPadding,
             fontSize,
-            fontFamily: customStyles.regularFont,
             activeFontSize: labelFontSize,
-            tintColor: (type === 'dark') ? customStyles.textColor : 'black',
-            baseColor: (type === 'dark') ? customStyles.textColor : 'black',
-            errorColor: (type === 'dark') ? customStyles.textColor : 'black',
+            tintColor,
+            baseColor,
+            errorColor,
             animationDuration,
             active,
             focused,
@@ -550,7 +548,7 @@ export default class DatePicker extends PureComponent {
 
         let counterProps = {
             baseColor,
-            errorColor: customStyles.errorColor,
+            errorColor,
             count,
             limit,
             fontSize: titleFontSize,
@@ -559,16 +557,19 @@ export default class DatePicker extends PureComponent {
 
         return (
             <View {...containerProps}>
+                {lineCircle && <Label {...labelProps}>{label}</Label>}
+
                 <Animated.View {...inputContainerProps}>
                     {disabled && <Line {...lineProps} />}
 
-                    <Label {...labelProps}>{label}</Label>
+                    {!lineCircle && <Label {...labelProps}>{label}</Label>}
 
                     <View style={styles.row}>
                         {this.renderAffix('prefix', active, focused)}
+                        {this.renderAccessory()}
                         <TextInput
                             style={[styles.input, inputStyle, inputStyleOverrides]}
-                            selectionColor={customStyles.tintColor}
+                            selectionColor={tintColor}
 
                             {...props}
 
@@ -581,9 +582,7 @@ export default class DatePicker extends PureComponent {
                             ref={this.updateRef}
                             onPress={!disabled ? () => this.onPress(value) : null}
                         />
-                        <Icon {...props} style={type === 'dark' ? {padding: 10, color: customStyles.textColor} : {padding: 10, color: 'black'} } name='date-range' value={value} onPress={!disabled ? () => this.onPress(value) : null}/>
                         {this.renderAffix('suffix', active, focused)}
-                        {this.renderAccessory()}
 
                     </View>
                 </Animated.View>
@@ -633,5 +632,3 @@ export default class DatePicker extends PureComponent {
         );
     }
 }
-
-DatePicker.contextTypes = contextTypes;
