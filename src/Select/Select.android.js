@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import { string, array, func } from 'prop-types';
+import {string, array, func, object} from 'prop-types';
 
-import { View, Picker, StyleSheet } from 'react-native';
-import Typography from "../Typography/Typography";
+import {View, Picker, StyleSheet} from 'react-native';
 
 
 class Select extends Component {
@@ -19,16 +18,15 @@ class Select extends Component {
         onValueChange: func,
         selectedValue: string,
         placeHolder: string,
-        cancelLabel: string,
-        type: string
+        cancelLabel: string
     };
     static defaultProps = {
         options: [],
-        onValueChange: () => {},
-        type: 'dark'
+        onValueChange: () => {
+        }
     }
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         let initialItems = Array.from(props.options);
@@ -39,7 +37,7 @@ class Select extends Component {
         }
     }
 
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
         const {options, placeHolder} = nextProps
 
         let items = Array.from(options);
@@ -48,61 +46,30 @@ class Select extends Component {
         this.setState({items: items})
     }
 
-    render () {
+    render() {
         const {labelText, selectedValue, type, onValueChange} = this.props;
         const {items} = this.state
-
+        console.log(selectedValue)
         return (
-            <View>
-                <Typography style={s.textContainer} type={type !== 'dark' ? 'darkText' : 'text'}>
-                    {labelText}
-                </Typography>
-                <View style={type === 'dark' ? s.valueContainerDark : s.valueContainer}>
-                    <Picker
-                        onValueChange={onValueChange}
-                        selectedValue={selectedValue}
-                        mode='dialog'
-                        style={type === 'dark' ? {color: 'white', marginLeft: 8} : {color: 'black', marginLeft: 8 }}
-                    >
-                        {
-                            items.map((item, index) =>
-                                <Picker.Item
-                                    value={item.value}
-                                    label={item.label}
-                                    key={index}
-                                />)
-                        }
-                    </Picker>
-                </View>
-            </View>
+            <Picker
+                onValueChange={onValueChange}
+                selectedValue={selectedValue}
+                mode='dialog'
+                {...this.props}
+            >
+                {
+                    items.map((item, index) =>
+                        <Picker.Item
+                            value={item.value}
+                            label={item.label}
+                            key={index}
+                        />)
+                }
+            </Picker>
         );
 
     }
 }
-
-const s = StyleSheet.create({
-    valueContainerDark: {
-        padding: 0,
-        height: 44,
-        borderRadius: 4,
-        backgroundColor: 'rgba(29, 28, 50, 0.4)',
-        justifyContent: 'space-around',
-    },
-    valueContainer: {
-        padding: 0,
-        height: 44,
-        borderRadius: 4,
-        backgroundColor: 'transparent',
-        justifyContent: 'space-around',
-        borderWidth: 1,
-        borderColor: '#cccccc'
-    },
-    textContainer: {
-        paddingLeft: 12,
-        paddingBottom: 5,
-        fontSize: 12
-    }
-});
 
 
 export default Select;
