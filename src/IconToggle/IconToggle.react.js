@@ -120,8 +120,12 @@ function getIconSize(props, context) {
     return spacing.iconSize;
 }
 function getContainerSize(iconSize, style) {
-    const s = StyleSheet.flatten(style.container);
-    return s.width || iconSize * 2;
+    if (style && style.container) {
+        const s = StyleSheet.flatten(style.container);
+        if (s.width)
+            return s.width
+    }
+    return iconSize * 2;
 }
 function getRippleSize(containerSize, percent) {
     return (percent / 100) * containerSize;
