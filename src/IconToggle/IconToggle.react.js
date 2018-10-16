@@ -119,8 +119,9 @@ function getIconSize(props, context) {
 
     return spacing.iconSize;
 }
-function getContainerSize(iconSize) {
-    return iconSize * 2;
+function getContainerSize(iconSize, style) {
+    const s = StyleSheet.flatten(style.container);
+    return s.width || iconSize * 2;
 }
 function getRippleSize(containerSize, percent) {
     return (percent / 100) * containerSize;
@@ -131,7 +132,7 @@ class IconToggle extends PureComponent {
         super(props, context);
 
         const iconSize = getIconSize(props, context);
-        const containerSize = getContainerSize(iconSize);
+        const containerSize = getContainerSize(props.size, props.style);
 
         this.state = {
             scaleValue: new Animated.Value(0.01),
@@ -147,7 +148,7 @@ class IconToggle extends PureComponent {
     componentWillReceiveProps(nextProps) {
         const iconSize = getIconSize(nextProps, this.context);
         if (this.state.iconSize !== iconSize || nextProps.percent !== this.props.percent) {
-            const containerSize = getContainerSize(iconSize);
+            const containerSize = getContainerSize(nextProps.size, nextProps.style);
 
             this.setState({
                 containerSize,
