@@ -49,7 +49,6 @@ class Select extends Component {
     render() {
         const {labelText, selectedValue, type, onValueChange} = this.props;
         const {items} = this.state
-        console.log(selectedValue)
         return (
             <Picker
                 onValueChange={onValueChange}
