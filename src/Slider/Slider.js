@@ -46,7 +46,7 @@ export default class Slider extends Component {
     }
 
     render() {
-        const {hasInput, label, minimumValue, maximumValue, value, onChangeText, color, step, unitOfMeasure} = this.props
+        const {hasValue, hasInput, label, minimumValue, maximumValue, value, onChangeText, color, step, unitOfMeasure} = this.props
         const customStyles = getStyles(this.props, this.context)
         return <View
             style={[this.props.style, {
@@ -55,7 +55,9 @@ export default class Slider extends Component {
                 justifyContent: 'space-around',
                 alignItems: 'flex-start'
             }]}>
-            <Typography style={{left: ((100 * (this.state.value / maximumValue)) * 0.8).toString() + '%'}} type='darkBoldText'>{this.state.value + ' ' + unitOfMeasure}</Typography>
+            {
+                hasValue && <Typography style={{left: ((100 * (this.state.value / maximumValue)) * 0.8).toString() + '%'}} type='darkBoldText'>{this.state.value + ' ' + unitOfMeasure}</Typography>
+            }
             <View {...this.props}
                   style={{
                       flexDirection: 'row',
