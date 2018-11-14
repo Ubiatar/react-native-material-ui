@@ -4,9 +4,17 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 /* eslint-enable import/no-unresolved, import/extensions */
 
+import {Text} from 'react-native'
+import { ViewPropTypes } from '../utils';
+
 const propTypes = {
     name: PropTypes.string.isRequired,
-    style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    style: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+        ViewPropTypes.style,
+        Text.propTypes.style,
+    ]),
     size: PropTypes.number,
     color: PropTypes.string,
 };
