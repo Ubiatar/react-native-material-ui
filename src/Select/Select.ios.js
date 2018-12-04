@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { string, array, func } from 'prop-types';
+import { string, array, func, object } from 'prop-types';
 
 import {
     View,
@@ -28,12 +28,11 @@ class Select extends Component {
         selectedValue: string,
         placeHolder: string,
         confirmLabel: string,
-        type: string
+        containerStyle: object
     };
     static defaultProps = {
         options: [],
-        onValueChange: () => {},
-        type: 'dark'
+        onValueChange: () => {}
     }
 
     constructor (props) {
@@ -46,19 +45,19 @@ class Select extends Component {
     }
 
     render () {
-        const {labelText, selectedValue, options, placeHolder, type, onValueChange, confirmLabel} = this.props;
+        const {labelText, selectedValue, options, placeHolder, onValueChange, confirmLabel, containerStyle} = this.props;
         const {pickerOpen, val} = this.state
         let selected = options.find(el => el.value === selectedValue)
         let label = selected ? selected.label : placeHolder;
 
         return (
             <View>
-                <Typography style={s.textContainer} type={type !== 'dark' ? 'darkText' : 'text'}>
+                {labelText && <Typography style={s.textContainer} type='darkText'>
                     {labelText}
-                </Typography>
+                </Typography>}
                 <TouchableOpacity onPress={() => this.setState({pickerOpen: true})}>
-                    <View style={type === 'dark' ? s.valueContainerDark : s.valueContainer}>
-                        <Typography style={{marginLeft: 12}} type={type !== 'dark' ? 'darkText' : 'text'}>
+                    <View style={[s.valueContainer, containerStyle]}>
+                        <Typography type='darkText'>
                             {label}
                         </Typography>
                     </View>
@@ -108,21 +107,12 @@ class Select extends Component {
 }
 
 const s = StyleSheet.create({
-    valueContainerDark: {
-        padding: 0,
-        height: 44,
-        borderRadius: 4,
-        backgroundColor: 'rgba(29, 28, 50, 0.4)',
-        justifyContent: 'space-around',
-    },
     valueContainer: {
         padding: 0,
         height: 44,
-        borderRadius: 4,
         backgroundColor: 'transparent',
         justifyContent: 'space-around',
-        borderWidth: 1,
-        borderColor: '#cccccc'
+        alignItems: 'center'
     },
     textContainer: {
         paddingLeft: 12,
@@ -137,6 +127,7 @@ const s = StyleSheet.create({
         height: Dimensions.get('window').height,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        backgroundColor: 'rgba(29, 28, 50, 0.4)'
     },
     modalInside: {
         width: '90%',
