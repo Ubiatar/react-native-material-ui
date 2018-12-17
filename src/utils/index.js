@@ -1,11 +1,9 @@
 import {
-    View,
     BackHandler,
-    ViewPropTypes as RNViewPropTypes,
+    ViewPropTypes,
     BackAndroid as DeprecatedBackAndroid,
 } from 'react-native';
 
-const ViewPropTypes = RNViewPropTypes || View.propTypes;
 const BackAndroid = BackHandler || DeprecatedBackAndroid;
 
 export {

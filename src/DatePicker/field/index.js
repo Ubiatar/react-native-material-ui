@@ -102,8 +102,8 @@ export default class DatePicker extends PureComponent {
         prefix: PropTypes.string,
         suffix: PropTypes.string,
 
-        containerStyle: (ViewPropTypes || View.propTypes).style,
-        inputContainerStyle: (ViewPropTypes || View.propTypes).style,
+        containerStyle: ViewPropTypes.style,
+        inputContainerStyle: ViewPropTypes.style,
         lineCircle: PropTypes.bool,
         inputStyle: Text.propTypes.style,
         confirmLabel: PropTypes.string
