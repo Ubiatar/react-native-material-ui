@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
     View,
+    SafeAreaView,
     StyleSheet,
     TouchableWithoutFeedback,
     LayoutAnimation,
@@ -225,6 +226,10 @@ const styles = StyleSheet.create({
         width: 20
     },
     bottomBlock: {
-        height: '100%'
+        height: 10.3,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.05,
+        shadowRadius: 3
     },
 })
