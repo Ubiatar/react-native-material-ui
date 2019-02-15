@@ -32,7 +32,7 @@ const propTypes = {
     /**
     * Text will be shown on button
     */
-    text: PropTypes.string.isRequired,
+    text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     /**
     * Button text will be in uppercase letters
     */
