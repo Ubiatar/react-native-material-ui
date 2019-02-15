@@ -30,7 +30,7 @@ export default class FullTab extends React.Component {
     /** Extends the style of the badge's wrapping View. */
     badgeSlotStyle: ViewPropTypes.style,
     /** The text of the label. */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     /** Extends the style of the label. */
     labelStyle: Text.propTypes.style,
     /** Useful to add more props to the Text component of the label. */
